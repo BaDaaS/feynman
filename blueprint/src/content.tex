@@ -90,3 +90,47 @@ is the first genuine frontier node of this project.
   once Mathlib carries the unbounded spectral theorem, is a scheduled
   re-verification task (prompt.md \S11).
 \end{remark}
+
+\chapter{Part I -- Finite-dimensional quantum mechanics}
+
+\section{The qubit and the Pauli operators}
+
+The qubit's state space is $\mathbb{C}^2$; its traceless self-adjoint observables
+are spanned by the Pauli operators $\sigma_x,\sigma_y,\sigma_z$. The three facts
+below make them observables (Hermitian, hence real spectrum via
+Theorem~\ref{thm:selfadjoint-real}), generators (traceless), and two-outcome
+(involutions).
+
+\begin{lemma}[Pauli operators are Hermitian]
+  \label{lem:pauli-hermitian}
+  \lean{QuantumBook.FiniteDim.sigmaZ_isHermitian}
+  \leanok
+  \uses{thm:selfadjoint-real}
+  Each Pauli operator $\sigma_x,\sigma_y,\sigma_z$ is Hermitian; hence (by
+  Theorem~\ref{thm:selfadjoint-real}) each has real eigenvalues and is a qubit
+  observable. (Formalized for all three: \texttt{sigmaX/Y/Z\_isHermitian}.)
+\end{lemma}
+\begin{proof}\leanok Direct computation on the explicit matrices. \end{proof}
+
+\begin{lemma}[Pauli operators are traceless]
+  \label{lem:pauli-traceless}
+  \lean{QuantumBook.FiniteDim.sigmaZ_trace}
+  \leanok
+  Each Pauli operator has trace $0$; the trace-zero self-adjoint $2\times2$
+  matrices are the real span of the Paulis, i.e. $i\cdot\mathfrak{su}(2)$.
+  (Formalized: \texttt{sigmaX/Y/Z\_trace}.)
+\end{lemma}
+\begin{proof}\leanok $\operatorname{tr} = A_{00}+A_{11}$; for $\sigma_z$ this is
+  $1+(-1)=0$. \end{proof}
+
+\begin{lemma}[Pauli operators are involutions]
+  \label{lem:pauli-involution}
+  \lean{QuantumBook.FiniteDim.sigmaZ_sq}
+  \leanok
+  \uses{thm:eigenvector-equation}
+  Each Pauli operator squares to the identity, $\sigma^2 = I$. With the spectral
+  theorem (Theorem~\ref{thm:eigenvector-equation}) this forces eigenvalues in
+  $\{+1,-1\}$: a Pauli measurement has exactly two outcomes.
+  (Formalized: \texttt{sigmaX/Y/Z\_sq}.)
+\end{lemma}
+\begin{proof}\leanok Direct $2\times2$ matrix multiplication. \end{proof}

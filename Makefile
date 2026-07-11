@@ -105,9 +105,11 @@ check-blueprint: proofs ## Verify blueprint \lean{} names exist (checkdecls-equi
 # ---------------------------------------------------------------------------
 
 .PHONY: videos
-videos: ## Render all chapter-0 Manim scenes to mp4 (into media/media)
+videos: ## Render all Manim scenes to mp4 (into media/media)
 	$(MANIM) $(MANIM_QUALITY) manim/ch00/spectral.py SpectralDecompositionScene
 	$(MANIM) $(MANIM_QUALITY) manim/ch00/spectral.py RealSpectrumScene
+	$(MANIM) $(MANIM_QUALITY) manim/ch01/qubit.py BlochPolesScene
+	$(MANIM) $(MANIM_QUALITY) manim/ch01/qubit.py PauliFlipScene
 
 # ---------------------------------------------------------------------------
 # Housekeeping

@@ -4,6 +4,7 @@ Root document of the book. Assembles the chapters via `{include}`.
 -/
 import VersoManual
 import Chapters.Ch00_Substrate
+import Chapters.Ch01_Qubit
 
 open Verso.Genre Manual
 
@@ -35,3 +36,5 @@ spectral theorem — carried through the formal layer (the Lean library
 whole pipeline works end to end.
 
 {include 0 Chapters.Ch00_Substrate}
+
+{include 0 Chapters.Ch01_Qubit}

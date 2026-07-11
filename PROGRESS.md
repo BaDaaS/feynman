@@ -58,9 +58,26 @@ one edge past the proven `thm:eigenvector-equation`. Further frontier nodes appe
 in Part IV (CCR, Schrödinger dynamics). As Mathlib grows, retire frontier nodes
 here (the "re-verification duty", §11).
 
+## Tier 1 / Part I - in progress
+
+### Concept: the qubit and the Pauli operators - COMPLETE (four layers)
+
+| Layer                | Artifact                                              | Status |
+| -------------------- | ----------------------------------------------------- | ------ |
+| Formal (Lean)        | `QuantumBook/FiniteDim/Qubit.lean` (9 theorems)       | done (no `sorry`) |
+| Book (Verso + ASCII) | `book/Chapters/Ch01_Qubit.lean`                       | done (HTML renders) |
+| Video (Manim)        | `media/manim/ch01/qubit.py` + `media/scripts/ch01.md` | done (2 scenes render) |
+| Provenance           | `references/sources.md` (Part I section)              | done |
+| Blueprint nodes      | `lem:pauli-hermitian/traceless/involution`            | done (checkdecls pass) |
+
+Verified declarations (axioms `[propext, Classical.choice, Quot.sound]`;
+`--wfail` clean): `QuantumBook.FiniteDim.{sigmaX,sigmaY,sigmaZ}` and, for each,
+`_isHermitian`, `_trace`, `_sq`.
+
 ## Next smallest step
 
-Tier-0 slice done and reported. Next: begin **Tier 1 / Part I** with the smallest
-concept - the qubit state space (`ℂ²` / `EuclideanSpace ℂ (Fin 2)`) and an
-observable (Pauli operator) as a self-adjoint operator - reusing the Part 0
-spectral machinery. Add its four layers before advancing.
+Continue Part I: **observables and expectation values** - define
+`expectation ρ A = tr(ρ A)` and prove it is real for self-adjoint `A` (reusing the
+Part 0 real-spectrum result), then the **Born rule** via the spectral projections.
+Both are finite-dimensional and fully provable. Add each concept's four layers
+before advancing.

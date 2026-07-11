@@ -55,5 +55,28 @@ we follow -> one-line "why this source".
 
 ---
 
+## Part I - Finite-dimensional QM
+
+### The qubit and the Pauli operators
+
+- **Lean declarations**: `QuantumBook.FiniteDim.sigmaX/sigmaY/sigmaZ`;
+  `sigmaX/Y/Z_isHermitian`; `sigmaX/Y/Z_trace`; `sigmaX/Y/Z_sq`.
+- **Historical origin**: the Pauli matrices are due to Wolfgang Pauli (1927), in
+  his treatment of electron spin; the identification of a two-level system as the
+  fundamental unit of quantum information is later (Schumacher's "qubit", 1995).
+  The `su(2)` structure is the Lie theory of Cartan/Weyl.
+- **Modern treatments we follow**:
+  - Nielsen & Chuang, _Quantum Computation and Quantum Information_, ch. 1-2 - the
+    canonical qubit/Pauli/Bloch presentation. `[NielsenChuang2010]`
+  - Woit, _Quantum Theory, Groups and Representations_, ch. 3-4 (free) - the
+    `SU(2)`/`su(2)` representation-theoretic view of the Paulis. `[Woit2017]` `[free]`
+- **Why these**: Nielsen-Chuang is the shared vocabulary; Woit supplies the
+  representation-theoretic reading that Part II (M2.5, spin) develops.
+- **Mathlib provenance**: `Matrix.IsHermitian`, `Matrix.trace`,
+  `Matrix.trace_fin_two`, `Matrix.mul_fin_two`, `Complex.conj_I`
+  (`Mathlib/LinearAlgebra/Matrix/*`, `Mathlib/Data/Complex/Basic.lean`).
+
+---
+
 _Further concepts append below as they are formalized. Keep this file in lockstep
 with `PROGRESS.md` and the blueprint graph._
