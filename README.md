@@ -15,6 +15,14 @@ finite-dimensional spectral theorem, carried end to end through every layer to
 prove the pipeline works. See `PROGRESS.md` for status and `prompt.md` for the full
 project constitution.
 
+**The course.** [`course/`](course/) holds the full, route-organized curriculum
+this book is built to teach: a [module map and dependency graph](course/README.md),
+a dated and sourced [historical arc](course/history.md), a detailed
+[module-by-module syllabus](course/syllabus.md) (every module anchored to a Lean
+declaration or a frontier flag), and a [foundations track](course/foundations.md)
+that separates the theorems from the interpretation. It links throughout to the
+verified [reading map](references/reading-map.md).
+
 ## The core invariant
 
 Every mathematical claim in the book is exactly one of:

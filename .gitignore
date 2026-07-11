@@ -47,3 +47,8 @@ media/videos/
 # leanblueprint / plasTeX generated artifacts
 blueprint/lean_decls
 blueprint/src/*.paux
+
+# Reference PDFs: downloaded locally for transformation, NOT committed to the
+# public repo (copyright / redistribution). Keep only the manifest tracked.
+references/pdf/*.pdf
+references/pdf/*.PDF
