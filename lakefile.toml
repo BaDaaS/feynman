@@ -1,0 +1,39 @@
+# Lake build configuration for the verified quantum-mechanics book.
+#
+# Three pinned dependencies must agree on ONE Lean toolchain (see lean-toolchain):
+#   - Lean         leanprover/lean4:v4.31.0
+#   - Mathlib      v4.31.0   (the verified mathematics)
+#   - Verso        v4.31.0   (the book; chapters are Lean files)
+# leanblueprint is a pure-Python plasTeX plugin (pip), NOT a Lake dependency,
+# so it imposes no toolchain constraint. See DECISIONS.md for the rationale.
+name = "quantum-book"
+defaultTargets = ["QuantumBook"]
+
+[[require]]
+name = "mathlib"
+git = "https://github.com/leanprover-community/mathlib4.git"
+rev = "v4.31.0"
+
+[[require]]
+name = "verso"
+git = "https://github.com/leanprover/verso.git"
+rev = "v4.31.0"
+
+# THE LIBRARY: definitions + theorems. The single source of truth (§3).
+[[lean_lib]]
+name = "QuantumBook"
+
+# THE BOOK: Verso sources. Chapters import QuantumBook decls by name (§3).
+# Root module `Book` (book/Book.lean) assembles the chapters via `{include}`.
+[[lean_lib]]
+name = "Book"
+srcDir = "book"
+# Enumerate the book modules so imports across the `Chapters.*` namespace
+# resolve when building the library and the executable. Add each new chapter.
+globs = ["Book", "Chapters.Ch00_Substrate"]
+
+# Book builder: generates the HTML/PDF book from the Verso sources.
+[[lean_exe]]
+name = "quantumbook"
+srcDir = "book"
+root = "Main"

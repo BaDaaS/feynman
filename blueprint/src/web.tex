@@ -1,0 +1,21 @@
+% Web version of the blueprint (plasTeX -> HTML with a dependency graph).
+\documentclass{report}
+
+\usepackage{amssymb, amsthm, amsmath}
+\usepackage{hyperref}
+\usepackage[dep_graph]{blueprint}
+
+\input{macros/common}
+\input{macros/web}
+
+\home{https://github.com/badaas/feynman}
+\github{https://github.com/badaas/feynman}
+\dochome{https://badaas.github.io/feynman/docs}
+
+\title{Blueprint: A Verified, Illustrated Book on Quantum Mechanics}
+\author{Danny Willems}
+
+\begin{document}
+\maketitle
+\input{content}
+\end{document}

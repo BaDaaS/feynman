@@ -1,0 +1,49 @@
+# Lean / Lake build outputs (per-checkout, regenerable)
+/.lake/
+**/.lake/
+/lake-packages/
+
+# Generated book + video artifacts
+/build/
+media/media/
+media/manim/**/media/
+
+# Python (Manim venv managed by uv)
+media/.venv/
+__pycache__/
+*.pyc
+
+# leanblueprint generated output
+blueprint/web/
+blueprint/print/
+blueprint/*.aux
+blueprint/*.log
+blueprint/*.out
+blueprint/*.toc
+blueprint/*.fdb_latexmk
+blueprint/*.fls
+blueprint/*.pdf
+blueprint/*.bbl
+blueprint/*.blg
+
+# OS / editor
+.DS_Store
+Thumbs.db
+*.swp
+*.swo
+*~
+.idea/
+.vscode/
+
+# Python tools venv (leanblueprint, plastex)
+tools/.venv/
+
+# leanblueprint print output dir
+blueprint/print/
+
+# Manim render outputs (any location)
+media/videos/
+
+# leanblueprint / plasTeX generated artifacts
+blueprint/lean_decls
+blueprint/src/*.paux

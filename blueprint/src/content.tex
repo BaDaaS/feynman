@@ -1,0 +1,92 @@
+% The blueprint content, shared by the web and print versions.
+%
+% Node conventions (leanblueprint):
+%   \lean{Name}   ties the node to a Lean declaration; `leanblueprint checkdecls`
+%                 verifies the name exists in the built QuantumBook library.
+%   \leanok       marks the statement/proof as fully formalized (green in graph).
+%   \uses{labels} records dependencies (edges in the graph).
+%   A node with neither \lean nor \leanok is a FRONTIER node (prompt.md invariant
+%   2): a result not yet available in Mathlib, tracked but not proven.
+
+\chapter{Part 0 -- Substrate}
+
+This chapter fixes the finite-dimensional linear algebra on which quantum
+mechanics is built, and its organizing result: the spectral theorem for
+self-adjoint operators. Everything here is fully verified against Mathlib.
+
+\section{The finite-dimensional spectral theorem}
+
+\begin{theorem}[Observables have real spectra]
+  \label{thm:selfadjoint-real}
+  \lean{QuantumBook.Foundations.selfAdjoint_eigenvalue_isReal}
+  \leanok
+  Let $T$ be a self-adjoint (symmetric) operator on a complex inner product
+  space $E$. Every eigenvalue $\mu$ of $T$ is real: $\operatorname{Im} \mu = 0$.
+\end{theorem}
+
+\begin{proof}
+  \leanok
+  Self-adjointness gives $\overline{\mu} = \mu$, and a complex number equal to
+  its own conjugate has zero imaginary part. No finiteness is required.
+\end{proof}
+
+\begin{theorem}[Spectral theorem, matrix form]
+  \label{thm:hermitian-spectral}
+  \lean{QuantumBook.Foundations.hermitian_spectral_decomposition}
+  \leanok
+  \uses{thm:selfadjoint-real}
+  A Hermitian matrix $A$ over $\mathbb{C}$ is diagonalized by a unitary change of
+  basis: $A = U D U^{*}$, where $U$ is the unitary of an orthonormal eigenbasis
+  and $D$ is the diagonal matrix of the (real) eigenvalues.
+\end{theorem}
+
+\begin{proof}
+  \leanok
+  \uses{thm:selfadjoint-real}
+  Mathlib's \texttt{Matrix.IsHermitian.spectral\_theorem} phrases this with the
+  star-algebra conjugation $\mathrm{conjStarAlgAut}$; unfolding it yields the
+  explicit product $U D U^{*}$. The eigenvalues are real by
+  Theorem~\ref{thm:selfadjoint-real}.
+\end{proof}
+
+\begin{theorem}[Spectral theorem, operator form]
+  \label{thm:eigenvector-equation}
+  \lean{QuantumBook.Foundations.selfAdjoint_eigenvector_equation}
+  \leanok
+  \uses{thm:hermitian-spectral}
+  A self-adjoint operator $T$ on a finite-dimensional complex inner product space
+  admits an orthonormal basis of eigenvectors $(e_i)$ with real eigenvalues
+  $(\lambda_i)$, and acts on each by scaling: $T e_i = \lambda_i e_i$.
+\end{theorem}
+
+\begin{proof}
+  \leanok
+  \uses{thm:hermitian-spectral}
+  Immediate from Mathlib's finite-dimensional diagonalization
+  (\texttt{LinearMap.IsSymmetric.apply\_eigenvectorBasis}).
+\end{proof}
+
+\section{Frontier}
+
+The finite-dimensional result above is the baby case of the general spectral
+theorem. Its infinite-dimensional analogue, for unbounded self-adjoint operators,
+is the first genuine frontier node of this project.
+
+\begin{theorem}[Unbounded self-adjoint spectral theorem]
+  \label{thm:unbounded-spectral}
+  \notready
+  \uses{thm:eigenvector-equation}
+  An (unbounded) self-adjoint operator on a separable Hilbert space is unitarily
+  equivalent to multiplication by a real measurable function on an
+  $L^2$ space; equivalently, it admits a projection-valued spectral measure.
+\end{theorem}
+
+\begin{remark}
+  This statement is \emph{not yet available in Mathlib} and carries no Lean
+  declaration. It is tracked here as a frontier node (prompt.md invariant 2): the
+  verified/frontier line runs exactly between
+  Theorem~\ref{thm:eigenvector-equation} (proven) and
+  Theorem~\ref{thm:unbounded-spectral} (frontier). Retiring it from the frontier,
+  once Mathlib carries the unbounded spectral theorem, is a scheduled
+  re-verification task (prompt.md \S11).
+\end{remark}
