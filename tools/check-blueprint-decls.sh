@@ -29,7 +29,7 @@ f="$tmp/CheckBlueprintDecls.lean"
 } > "$f"
 
 echo "Checking blueprint declarations against the built QuantumBook library:"
-echo "$names" | sed 's/^/  - /'
+echo "$names" | awk '{print "  - " $0}'
 
 if lake env lean "$f" >/dev/null; then
   echo "OK: all blueprint \\lean{} declarations exist."

@@ -119,6 +119,10 @@ clean: ## Remove generated artifacts (keeps the Lean/oleans cache)
 	rm -f $(BLUEPRINT_SRC)/print.pdf
 	rm -rf media/media
 
+.PHONY: lint-shell
+lint-shell: ## Lint shell scripts with shellcheck
+	shellcheck tools/*.sh
+
 .PHONY: format-md
 format-md: ## Format markdown files
 	npx --yes prettier --write "**/*.md" --ignore-path .gitignore || true

@@ -1,0 +1,58 @@
+name: CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: ci-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  lean:
+    name: Build proofs + no-sorry + book renderer
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Free disk space
+        uses: jlumbroso/free-disk-space@54081f138730dfa15788a46383842cd2f914a1be # v1.3.0
+        with:
+          tool-cache: false
+          large-packages: false
+          docker-images: false
+          swap-storage: false
+
+      # lean-action installs elan, fetches the Mathlib olean cache, and builds
+      # the default target (the QuantumBook library). Pinned to a commit SHA.
+      - name: Build QuantumBook (elan + Mathlib cache)
+        uses: leanprover/lean-action@434f25c2f80ded67bba02502ad3a86f25db50709 # 2025-07-02
+        with:
+          build: true
+          lint: false
+          test: false
+
+      - name: No-sorry check (fails the build on any sorry)
+        run: make verify-no-sorry
+
+      - name: Build the book renderer + blueprint decl check
+        run: |
+          make book-exe
+          make check-blueprint
+
+  shellcheck:
+    name: Shellcheck
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+      - name: Install shellcheck
+        run: sudo apt-get update && sudo apt-get install -y shellcheck
+      - name: Run shellcheck
+        run: make lint-shell

@@ -147,3 +147,47 @@ that resolve the `TODO(author)` items in `prompt.md` §13 are recorded here.
   `make all`. Versions are pinned where the tool allows (`lean-toolchain`,
   `media/uv.lock`); system tools (ffmpeg, graphviz, TeX) are provisioned via the
   platform package manager and their versions recorded in ADR-0001.
+
+## ADR-0009 - GitHub Actions: CI + Pages deploy; changelog/PR-hygiene deferred
+
+- **Date**: 2026-07-11
+- **Context**: The repo lives at `github.com/BaDaaS/feynman` (public, so the book
+  can publish on GitHub Pages free tier). We need CI and a published book.
+- **Decision**:
+  - `.github/workflows/ci.yml`: builds `QuantumBook` (via `leanprover/lean-action`
+    pinned to a commit SHA, which handles elan + the Mathlib olean cache), runs the
+    no-sorry check, the book renderer, the blueprint decl check, and shellcheck -
+    all through Makefile targets (per rules/makefile.md).
+  - `.github/workflows/pages.yml`: renders the interactive HTML book and deploys it
+    to GitHub Pages (`actions/deploy-pages`), source set to GitHub Actions.
+  - Actions are pinned: `lean-action` and `free-disk-space` by commit SHA;
+    first-party `actions/*` by major tag.
+- **Rationale**: `lean-action` is the sanctioned, cache-aware way to build a Mathlib
+  project in CI without a `curl | sh` elan install (respects the
+  untrusted-execution rule). Pages needs a public repo on the free tier, matching
+  the CC-BY-SA "public" decision (ADR-0005).
+- **Deviation from the personal GitHub-workflow standard**: that standard also
+  mandates changelog and PR-hygiene workflows. These are DEFERRED during
+  bootstrapping (large agent-authored commits would fail the 500-line PR-size gate,
+  and there is no PR flow yet). Add `changelog.yaml` + `pr-hygiene.yaml` (toolbox
+  scripts) when the repo moves to a PR-based flow with a `CHANGELOG.md`.
+- **Consequences**: CI runtime is dominated by Verso compiling from source (Mathlib
+  is cached). The Pages URL is `https://badaas.github.io/feynman/` after the first
+  deploy.
+
+## ADR-0010 - Repository Claude Code skills (`.claude/skills/`)
+
+- **Date**: 2026-07-11
+- **Context**: This is a long-horizon, multi-session project with a strict
+  four-layer discipline (§5) and hard invariants (§2). Encoding the repeatable
+  workflows as in-repo skills keeps future sessions consistent.
+- **Decision**: Ship project skills under `.claude/skills/`:
+  `add-concept` (drive one concept through all four layers + provenance),
+  `lean-proof-loop` (search Mathlib, prove, verify no-sorry/axioms),
+  `verso-chapter` (author/extend a Verso chapter tied to Lean decls),
+  `manim-scene` (add a faithful ManimCE scene + narration), and
+  `blueprint-node` (add/lint a blueprint node and run the decl check).
+- **Rationale**: The prompt's working loop (§9) and three-layer discipline (§5) are
+  procedural knowledge best captured as skills, not re-derived each session.
+- **Consequences**: Skills reference the pinned toolchain and the invariants; keep
+  them in lockstep with `DECISIONS.md` and the Makefile targets.
