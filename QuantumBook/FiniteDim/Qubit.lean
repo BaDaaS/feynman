@@ -104,4 +104,25 @@ theorem sigmaZ_sq : sigmaZ * sigmaZ = 1 := by
   fin_cases i <;> fin_cases j <;>
     simp [sigmaZ, Matrix.mul_apply, Fin.sum_univ_two]
 
+/-- The Pauli algebra relation `σ_x σ_y = i σ_z`. Together with its cyclic
+permutations this is the multiplication table of the Pauli operators; it encodes
+the `su(2)` Lie bracket (and the Clifford relation) that generates qubit
+rotations. -/
+theorem sigmaX_mul_sigmaY : sigmaX * sigmaY = Complex.I • sigmaZ := by
+  ext i j
+  fin_cases i <;> fin_cases j <;>
+    simp [sigmaX, sigmaY, sigmaZ, Matrix.mul_apply, Fin.sum_univ_two]
+
+/-- The Pauli algebra relation `σ_y σ_z = i σ_x` (cyclic). -/
+theorem sigmaY_mul_sigmaZ : sigmaY * sigmaZ = Complex.I • sigmaX := by
+  ext i j
+  fin_cases i <;> fin_cases j <;>
+    simp [sigmaX, sigmaY, sigmaZ, Matrix.mul_apply, Fin.sum_univ_two]
+
+/-- The Pauli algebra relation `σ_z σ_x = i σ_y` (cyclic). -/
+theorem sigmaZ_mul_sigmaX : sigmaZ * sigmaX = Complex.I • sigmaY := by
+  ext i j
+  fin_cases i <;> fin_cases j <;>
+    simp [sigmaX, sigmaY, sigmaZ, Matrix.mul_apply, Fin.sum_univ_two]
+
 end QuantumBook.FiniteDim

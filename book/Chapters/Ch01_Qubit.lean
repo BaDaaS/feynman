@@ -76,6 +76,17 @@ makes `ℂ²` a *bit*.
    -- arrows: --> map; the two eigenvalues of an involution are +1 and -1
 ```
 
+# The Pauli algebra
+
+The three operators are not independent as an algebra: they multiply into each
+other. The single relation `σ_x σ_y = i σ_z`, with its cyclic permutations,
+is their whole multiplication table. It is the `su(2)` Lie bracket in disguise
+(and the Clifford relation of a two-dimensional space), and it is what makes the
+exponentials of the Paulis the `SU(2)` rotations of the qubit - the subject of
+Part II.
+
+{docstring QuantumBook.FiniteDim.sigmaX_mul_sigmaY}
+
 # Sources & further reading
 
 - M. A. Nielsen and I. L. Chuang, _Quantum Computation and Quantum Information_

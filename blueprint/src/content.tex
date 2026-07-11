@@ -134,3 +134,16 @@ Theorem~\ref{thm:selfadjoint-real}), generators (traceless), and two-outcome
   (Formalized: \texttt{sigmaX/Y/Z\_sq}.)
 \end{lemma}
 \begin{proof}\leanok Direct $2\times2$ matrix multiplication. \end{proof}
+
+\begin{lemma}[Pauli algebra]
+  \label{lem:pauli-algebra}
+  \lean{QuantumBook.FiniteDim.sigmaX_mul_sigmaY}
+  \leanok
+  \uses{lem:pauli-involution}
+  The Pauli operators satisfy $\sigma_x\sigma_y = i\sigma_z$ and its cyclic
+  permutations. This is their multiplication table; it encodes the
+  $\mathfrak{su}(2)$ Lie bracket and the Clifford relation generating qubit
+  rotations. (Formalized: \texttt{sigmaX\_mul\_sigmaY},
+  \texttt{sigmaY\_mul\_sigmaZ}, \texttt{sigmaZ\_mul\_sigmaX}.)
+\end{lemma}
+\begin{proof}\leanok Direct $2\times2$ matrix multiplication. \end{proof}

@@ -64,7 +64,7 @@ here (the "re-verification duty", §11).
 
 | Layer                | Artifact                                              | Status |
 | -------------------- | ----------------------------------------------------- | ------ |
-| Formal (Lean)        | `QuantumBook/FiniteDim/Qubit.lean` (9 theorems)       | done (no `sorry`) |
+| Formal (Lean)        | `QuantumBook/FiniteDim/Qubit.lean` (12 theorems)       | done (no `sorry`) |
 | Book (Verso + ASCII) | `book/Chapters/Ch01_Qubit.lean`                       | done (HTML renders) |
 | Video (Manim)        | `media/manim/ch01/qubit.py` + `media/scripts/ch01.md` | done (2 scenes render) |
 | Provenance           | `references/sources.md` (Part I section)              | done |
