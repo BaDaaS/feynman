@@ -10,6 +10,10 @@ formal-methods sensibility) who has seen quantum mechanics before: the route is
 operator-algebraic, representation-theoretic, geometric, and categorical rather
 than PDE-first. Physical intuition is welcome but never substitutes for a proof.
 
+**Read the book online:** <https://badaas.github.io/feynman/> (redirects to the
+org's custom domain <https://badaas.be/feynman/>; both serve the live interactive
+book, rebuilt on every push by the GitHub Pages workflow).
+
 This repository currently contains the **Tier-0 vertical slice**: one concept, the
 finite-dimensional spectral theorem, carried end to end through every layer to
 prove the pipeline works. See `PROGRESS.md` for status and `prompt.md` for the full
