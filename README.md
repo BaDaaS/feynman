@@ -12,7 +12,8 @@ than PDE-first. Physical intuition is welcome but never substitutes for a proof.
 
 **Read the book online:** <https://badaas.github.io/feynman/> (redirects to the
 org's custom domain <https://badaas.be/feynman/>; both serve the live interactive
-book, rebuilt on every push by the GitHub Pages workflow).
+book, rebuilt on every push by the GitHub Pages workflow). **Watch the narrated
+animations:** <https://badaas.be/feynman/watch/>.
 
 This repository currently contains the **Tier-0 vertical slice**: one concept, the
 finite-dimensional spectral theorem, carried end to end through every layer to

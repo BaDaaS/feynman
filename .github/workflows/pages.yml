@@ -46,6 +46,10 @@ jobs:
           make book-html
           mkdir -p _site
           cp -r build/book/html-multi/. _site/
+          # Narrated video reels (generated locally with macOS `say`; CI can only
+          # copy the committed mp4s, see DECISIONS.md ADR-0012).
+          mkdir -p _site/watch
+          cp -r media/reels/. _site/watch/
 
       - name: Configure Pages
         uses: actions/configure-pages@v5

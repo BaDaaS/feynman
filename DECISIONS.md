@@ -213,3 +213,28 @@ that resolve the `TODO(author)` items in `prompt.md` §13 are recorded here.
   `SakuraiNapolitano2021`, `Shankar1994`, `Zwiebach2022`, `CohenTannoudji`,
   `FeynmanIII`, `Weinberg2015QM`, `Ballentine2014`). The coverage-ambition §13 TODO
   (how far into Tier 5+ / toward QFT) remains open.
+
+## ADR-0012 - Narrated videos: local macOS `say` TTS, committed reels, Pages /watch
+
+- **Date**: 2026-07-12
+- **Context**: The video layer had silent Manim clips plus neutral narration
+  scripts (`media/scripts/chNN.md`), but no actual narrated videos - the "turn
+  into videos" goal (prompt.md section 7) was only half-realized.
+- **Decision**: `media/narrate.py` extracts the spoken text from each chapter
+  script, synthesizes it with macOS `say` (built-in TTS, no dependency, no
+  network; voice Samantha), and muxes it onto the matching Manim scene with
+  ffmpeg (extending the clip to the narration length), then concatenates a
+  per-chapter reel. The six reels are committed under `media/reels/` with a
+  self-contained `index.html` "watch" page; the Pages workflow copies them to
+  `/watch` so they are live at `badaas.be/feynman/watch/`.
+- **Rationale**: TTS keeps the video layer fully reproducible from a clean macOS
+  checkout with no new dependency. Because CI runs on Linux (no `say`), the reels
+  are a LOCAL authoring artifact that must be committed; CI only copies them. The
+  reels are small (~3.8 MB total for six chapters), so committing them is
+  acceptable and makes them shareable/publishable without an external host.
+- **Consequences**: `make narrate` regenerates the reels (macOS only). Editing a
+  narration script means re-running `make narrate` and re-committing the affected
+  reel. A higher-quality voice (a cloud TTS, or a neural local voice) is a drop-in
+  future upgrade: swap the `say` call in `narrate.py`; everything downstream is
+  unchanged. `media/media/` (per-scene narrated clips and raw renders) stays
+  git-ignored; only `media/reels/` (the published reels + watch page) is tracked.

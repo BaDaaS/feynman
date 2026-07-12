@@ -115,6 +115,13 @@ videos: ## Render all Manim scenes to mp4 (into media/media)
 	$(MANIM) $(MANIM_QUALITY) manim/ch04/dynamics.py UnitaryConservesNormScene
 	$(MANIM) $(MANIM_QUALITY) manim/ch05/entanglement.py EntanglementRankScene
 
+.PHONY: narrate
+narrate: ## Synthesize narration (macOS `say`) + mux onto scenes -> media/reels
+	cd media && uv run python narrate.py
+	mkdir -p media/reels
+	cp media/media/narrated/ch*_reel.mp4 media/reels/
+	@echo "Narrated reels in media/reels/ (published to /watch on Pages)."
+
 # ---------------------------------------------------------------------------
 # Housekeeping
 # ---------------------------------------------------------------------------
