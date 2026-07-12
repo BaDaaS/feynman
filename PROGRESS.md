@@ -88,9 +88,23 @@ Verified declarations (axioms `[propext, Classical.choice, Quot.sound]`;
 Verified: `QuantumBook.FiniteDim.expectation_isReal` (the expectation of a
 self-adjoint observable is real), axioms `[propext, Classical.choice, Quot.sound]`.
 
+### Concept: the Born rule - COMPLETE (four layers)
+
+| Layer                | Artifact                                              | Status |
+| -------------------- | ----------------------------------------------------- | ------ |
+| Formal (Lean)        | `QuantumBook/FiniteDim/Born.lean`                     | done (no `sorry`) |
+| Book (Verso + ASCII) | `book/Chapters/Ch03_Born.lean`                        | done (HTML renders) |
+| Video (Manim)        | `media/manim/ch03/born.py` + `media/scripts/ch03.md`  | done (renders) |
+| Provenance           | `references/sources.md` (Born rule)                   | done |
+| Blueprint node       | `thm:born-rule`                                       | done (checkdecls pass) |
+
+Verified: `QuantumBook.FiniteDim.{bornProb, bornProb_nonneg, bornProb_sum,
+bornProb_sum_eq_one}` - the Born probabilities are nonnegative and sum to one
+(Parseval). Axioms `[propext, Classical.choice, Quot.sound]`.
+
 ## Next smallest step
 
-Continue Part I: the **Born rule** - probability of outcome `λ` in state `x` is
-`‖P_λ x‖²` via the spectral projections (M0.3), and prove the probabilities are
-nonnegative and sum to one (partition of unity). Finite-dimensional and fully
-provable. Add its four layers before advancing.
+Continue Part I: **composite systems and the tensor product** - define the
+two-system state space `H_A ⊗ H_B` (Mathlib `TensorProduct`), a product state, and
+the notion of an entangled (non-product) state; then the Schmidt decomposition.
+Finite-dimensional and provable. Add each concept's four layers before advancing.

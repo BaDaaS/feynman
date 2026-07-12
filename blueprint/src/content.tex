@@ -153,6 +153,24 @@ Theorem~\ref{thm:selfadjoint-real}), generators (traceless), and two-outcome
   its own conjugate and is therefore real.
 \end{proof}
 
+\section{The Born rule}
+
+\begin{theorem}[The Born rule is a probability distribution]
+  \label{thm:born-rule}
+  \lean{QuantumBook.FiniteDim.bornProb_sum_eq_one}
+  \leanok
+  \uses{thm:eigenvector-equation}
+  Let $b$ be an orthonormal eigenbasis of an observable (Theorem
+  \ref{thm:eigenvector-equation}) and $x$ a normalized state. The Born
+  probabilities $p_i = |\langle b_i, x\rangle|^2$ are nonnegative and satisfy
+  $\sum_i p_i = 1$; they form a genuine probability distribution over the
+  outcomes.
+\end{theorem}
+\begin{proof}\leanok
+  Nonnegativity is immediate. The sum equals $\|x\|^2$ by Parseval's identity for
+  an orthonormal basis, which is $1$ on a normalized state.
+\end{proof}
+
 \begin{lemma}[Pauli algebra]
   \label{lem:pauli-algebra}
   \lean{QuantumBook.FiniteDim.sigmaX_mul_sigmaY}

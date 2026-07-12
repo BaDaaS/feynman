@@ -44,7 +44,7 @@ infinite-dimensional ⇒ may be frontier.
   involutive - all proven); Bloch sphere (book/video)
 - [~] Observables as self-adjoint operators; expectation values real (proven);
   eigenvalues as outcomes
-- [ ] The Born rule (measurement probabilities)
+- [~] The Born rule: probabilities nonnegative and sum to one (proven)
 - [ ] Unitary evolution; one-parameter groups (finite-dim Stone)
 - [ ] Composite systems via tensor products
 - [ ] Entanglement; Schmidt decomposition

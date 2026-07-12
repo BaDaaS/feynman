@@ -96,6 +96,24 @@ we follow -> one-line "why this source".
   (`Mathlib/Analysis/InnerProductSpace/Symmetric.lean`, `.../Basic.lean`),
   `Complex.conj_eq_iff_im` (`Mathlib/Data/Complex/Basic.lean`).
 
+### The Born rule
+
+- **Lean declarations**: `QuantumBook.FiniteDim.bornProb`, `bornProb_nonneg`,
+  `bornProb_sum`, `bornProb_sum_eq_one`.
+- **Historical origin**: Max Born, "Zur Quantenmechanik der Stossvorgange" (1926) -
+  the probability interpretation of the amplitude. Gleason (1957) later derived the
+  rule from the lattice of projections.
+- **Modern treatments we follow**:
+  - Born, 1926 - the primary source for the rule. `[Born1926]`
+  - Nielsen & Chuang, ch. 2 - the finite-dimensional measurement postulate.
+    `[NielsenChuang2010]`
+  - Landsman, _Foundations of Quantum Theory_ (open access) - Gleason's derivation.
+    `[Landsman2017]` `[free]`
+- **Why these**: Born is the origin; Nielsen-Chuang the standard finite-dim
+  statement; Landsman the rigorous "why this rule" via Gleason (foundations track).
+- **Mathlib provenance**: `OrthonormalBasis.sum_sq_norm_inner_right` (Parseval),
+  `Mathlib/Analysis/InnerProductSpace/PiL2.lean`.
+
 ---
 
 _Further concepts append below as they are formalized. Keep this file in lockstep
