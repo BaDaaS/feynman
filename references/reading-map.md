@@ -8,6 +8,10 @@
 > periodically. Items marked `[free]` have a confirmed live open copy; items
 > marked `[unverified]` could not be confirmed and carry a note on what was
 > tried. German titles are given in ASCII transliteration.
+>
+> For the wider ecosystem - journals, preprint servers, video courses, YouTube
+> channels, blogs, researchers to follow, and community/formalization resources -
+> see the companion [`sources-directory.md`](sources-directory.md).
 
 ## Historical / primary
 

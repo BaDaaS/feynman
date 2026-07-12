@@ -123,5 +123,9 @@ Dual-licensed (see `LICENSING.md`): **Apache-2.0** for the Lean code and tooling
 
 Never fabricate a citation. Every reference resolves to a verified canonical or
 archived URL/DOI/arXiv ID; unverifiable ones are marked `[unverified]`. We cite and
-paraphrase, and do not reproduce substantial copyrighted text. See
-`references/reading-map.md`.
+paraphrase, and do not reproduce substantial copyrighted text. See the
+route-organized [reading map](references/reading-map.md) (books, papers, courses,
+plus a physicist's-track cross-reference) and the
+[sources directory](references/sources-directory.md) (journals, preprint servers,
+video courses, YouTube channels, blogs, researchers, and community/formalization
+resources).
