@@ -119,5 +119,8 @@ infinite-dimensional ⇒ may be frontier.
 How far into Tier 5+ to formally commit (cap at NRQM + quantum information, or
 explicitly aim toward QFT) is an open `TODO(author)` decision. The map above lists
 the full ambition as *stubs* so it is visible, without committing the timeline.
-The reading-map "physicist's track" cross-reference question (§13) is likewise
-deferred; `references/reading-map.md` currently stays math-first.
+The reading-map "physicist's track" cross-reference question (§13) is now
+RESOLVED: the reading map stays math-first but carries a parallel, clearly-labeled
+"Physicist's track (cross-reference)" section (Griffiths, Sakurai-Napolitano,
+Shankar, Zwiebach, Cohen-Tannoudji, Feynman Vol III, Weinberg, Ballentine), all
+links verified. See `references/reading-map.md` and `DECISIONS.md` ADR-0011.

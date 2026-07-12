@@ -268,3 +268,57 @@
   in Quantum Theory" (Myrvold, [entries/qt-issues](https://plato.stanford.edu/entries/qt-issues/)).
   -- Careful, well-sourced surveys of the foundational debates. NOTE: the older
   "Measurement in Quantum Theory" entry is retired; use qt-issues instead.
+
+## Physicist's track (cross-reference)
+
+This is a parallel, physics-first reading track provided only for
+cross-reference; the main reading map above stays math-first. These are the
+standard "physicist's-track" quantum mechanics texts, ordered roughly from first
+course to graduate reference. They emphasize physical intuition, calculation, and
+applications rather than the functional-analysis foundations of the math-first
+list. The free MIT OpenCourseWare courses 8.04, 8.05, and 8.06 (above) are the
+free course counterpart to this track and pair especially well with Zwiebach.
+
+- Griffiths, D. J. & Schroeter, D. F. _Introduction to Quantum Mechanics_, 3rd
+  ed., Cambridge University Press, 2018.
+  [doi:10.1017/9781316995433](https://doi.org/10.1017/9781316995433) (ISBN
+  9781107189638). The standard undergraduate first course: gentle,
+  calculation-first, ideal for a reader meeting wavefunctions and the Schrodinger
+  equation for the first time.
+- Sakurai, J. J. & Napolitano, J. _Modern Quantum Mechanics_, 3rd ed., Cambridge
+  University Press, 2020.
+  [doi:10.1017/9781108587280](https://doi.org/10.1017/9781108587280) (ISBN
+  9781108473224). The standard graduate course: starts from spin and bra-ket
+  formalism, for a reader ready for an operator-first, abstract treatment.
+- Shankar, R. _Principles of Quantum Mechanics_, 2nd ed., Springer (Plenum Press),
+  1994. ISBN 9780306447907. Thorough and self-contained graduate text with a
+  strong linear-algebra/formalism build-up and path integrals; good for a reader
+  who wants every step spelled out.
+- Zwiebach, B. _Mastering Quantum Mechanics: Essentials, Theory, and
+  Applications_, MIT Press, 2022.
+  [mitpress.mit.edu/9780262046138](https://mitpress.mit.edu/9780262046138/mastering-quantum-mechanics/)
+  (ISBN 9780262046138). Comprehensive modern text and the print companion to MIT
+  OCW 8.04/8.05/8.06; suits a self-learner who wants the video-course path in book
+  form.
+- Cohen-Tannoudji, C., Diu, B. & Laloe, F. _Quantum Mechanics_ (3 volumes), 2nd
+  ed., Wiley-VCH: Vol. 1 (2019, ISBN 9783527345533), Vol. 2 (2020, ISBN
+  9783527345540), Vol. 3 (ISBN 9783527345557). Encyclopedic reference with a
+  distinctive chapter-plus-"complements" structure; the book you consult for an
+  exhaustive, worked treatment of a specific topic.
+- Feynman, R. P., Leighton, R. B. & Sands, M. _The Feynman Lectures on Physics,
+  Vol. III: Quantum Mechanics_. `[free]`
+  [feynmanlectures.caltech.edu/III_toc.html](https://www.feynmanlectures.caltech.edu/III_toc.html).
+  The physicist's intuition, free to read online in the official Caltech edition;
+  the amplitude-first narrative is best as a companion for insight rather than a
+  problem-driven course.
+- Weinberg, S. _Lectures on Quantum Mechanics_, 2nd ed., Cambridge University
+  Press, 2015.
+  [doi:10.1017/CBO9781316276105](https://doi.org/10.1017/CBO9781316276105) (ISBN
+  9781107111660). A master's graduate lectures, modern and opinionated, covering
+  topics (interpretations, in-in formalism, Berry phase) most texts omit; for a
+  reader who already knows the standard material.
+- Ballentine, L. E. _Quantum Mechanics: A Modern Development_, 2nd ed., World
+  Scientific, 2014. [doi:10.1142/9038](https://doi.org/10.1142/9038) (ISBN
+  9789814578578). Builds QM from the statistical/ensemble interpretation and is
+  careful about foundations; for the foundations-aware reader who wants the
+  measurement and interpretation questions taken seriously.

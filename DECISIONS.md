@@ -191,3 +191,25 @@ that resolve the `TODO(author)` items in `prompt.md` §13 are recorded here.
   procedural knowledge best captured as skills, not re-derived each session.
 - **Consequences**: Skills reference the pinned toolchain and the invariants; keep
   them in lockstep with `DECISIONS.md` and the Makefile targets.
+
+## ADR-0011 - Reading-map scope: math-first plus a physicist's cross-reference track
+
+- **Date**: 2026-07-12
+- **Context**: `prompt.md` §13 (TODO author) - reading-map scope: stay strictly
+  math-first, or also carry a parallel physicist's track (Griffiths / Sakurai /
+  Shankar / Zwiebach) for cross-reference.
+- **Decision** (author): keep the reading map math-first, but add a clearly-labeled
+  "Physicist's track (cross-reference)" section listing the standard physics texts
+  (Griffiths-Schroeter, Sakurai-Napolitano, Shankar, Zwiebach, Cohen-Tannoudji,
+  Feynman Vol III [free], Weinberg, Ballentine), each with a verified DOI/URL/ISBN
+  and a one-line "which reader it serves" annotation.
+- **Rationale**: Author preference; a math-first reader still benefits from knowing
+  where the physics-first community's standard references sit, without diluting the
+  main list. All links verified per invariant 7 (Feynman Vol III free edition
+  confirmed live; the caltech.edu host 403s automated fetchers, so liveness was
+  confirmed via indexed chapter pages).
+- **Consequences**: `references/reading-map.md` gains the section and
+  `references/bibliography.bib` the entries (keys `Griffiths2018`,
+  `SakuraiNapolitano2021`, `Shankar1994`, `Zwiebach2022`, `CohenTannoudji`,
+  `FeynmanIII`, `Weinberg2015QM`, `Ballentine2014`). The coverage-ambition §13 TODO
+  (how far into Tier 5+ / toward QFT) remains open.
