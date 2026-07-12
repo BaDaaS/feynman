@@ -72,12 +72,25 @@ here (the "re-verification duty", §11).
 
 Verified declarations (axioms `[propext, Classical.choice, Quot.sound]`;
 `--wfail` clean): `QuantumBook.FiniteDim.{sigmaX,sigmaY,sigmaZ}` and, for each,
-`_isHermitian`, `_trace`, `_sq`.
+`_isHermitian`, `_trace`, `_sq`; plus the three Pauli-algebra relations
+`sigma{X,Y,Z}_mul_*`.
+
+### Concept: observables and expectation values - COMPLETE (four layers)
+
+| Layer                | Artifact                                              | Status |
+| -------------------- | ----------------------------------------------------- | ------ |
+| Formal (Lean)        | `QuantumBook/FiniteDim/Observable.lean`               | done (no `sorry`) |
+| Book (Verso + ASCII) | `book/Chapters/Ch02_Observable.lean`                  | done (HTML renders) |
+| Video (Manim)        | `media/manim/ch02/observable.py` + `media/scripts/ch02.md` | done (renders) |
+| Provenance           | `references/sources.md` (Observables)                 | done |
+| Blueprint node       | `thm:expectation-real`                                | done (checkdecls pass) |
+
+Verified: `QuantumBook.FiniteDim.expectation_isReal` (the expectation of a
+self-adjoint observable is real), axioms `[propext, Classical.choice, Quot.sound]`.
 
 ## Next smallest step
 
-Continue Part I: **observables and expectation values** - define
-`expectation ρ A = tr(ρ A)` and prove it is real for self-adjoint `A` (reusing the
-Part 0 real-spectrum result), then the **Born rule** via the spectral projections.
-Both are finite-dimensional and fully provable. Add each concept's four layers
-before advancing.
+Continue Part I: the **Born rule** - probability of outcome `λ` in state `x` is
+`‖P_λ x‖²` via the spectral projections (M0.3), and prove the probabilities are
+nonnegative and sum to one (partition of unity). Finite-dimensional and fully
+provable. Add its four layers before advancing.

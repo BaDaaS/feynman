@@ -42,7 +42,8 @@ infinite-dimensional ⇒ may be frontier.
 
 - [~] The qubit: state space `ℂ²`, Pauli operators (Hermitian, traceless,
   involutive - all proven); Bloch sphere (book/video)
-- [ ] Observables as self-adjoint operators; eigenvalues as outcomes
+- [~] Observables as self-adjoint operators; expectation values real (proven);
+  eigenvalues as outcomes
 - [ ] The Born rule (measurement probabilities)
 - [ ] Unitary evolution; one-parameter groups (finite-dim Stone)
 - [ ] Composite systems via tensor products

@@ -76,6 +76,26 @@ we follow -> one-line "why this source".
   `Matrix.trace_fin_two`, `Matrix.mul_fin_two`, `Complex.conj_I`
   (`Mathlib/LinearAlgebra/Matrix/*`, `Mathlib/Data/Complex/Basic.lean`).
 
+### Observables and expectation values
+
+- **Lean declarations**: `QuantumBook.FiniteDim.expectation`,
+  `QuantumBook.FiniteDim.expectation_isReal`.
+- **Historical origin**: the expectation-value formulation of quantum predictions
+  is due to Born, Heisenberg, and Jordan (1925-26) and von Neumann's trace form
+  `tr(ρ A)` (1932). Treating expectations (states as positive functionals) as
+  primitive is the operator-algebraic reading (Segal, Haag-Kastler).
+- **Modern treatments we follow**:
+  - Hall, _Quantum Theory for Mathematicians_, ch. 3 - observables and expectation
+    values tied to the spectral theorem. `[Hall2013QTM]`
+  - Strocchi, _An Introduction to the Mathematical Structure of QM_ - expectation
+    values as states (positive normalized functionals), previewing Part II.
+    `[Strocchi2008]`
+- **Why these**: Hall gives the Hilbert-space picture the proof uses; Strocchi
+  frames expectations as the primitive of the algebraic view (M2.1).
+- **Mathlib provenance**: `LinearMap.IsSymmetric`, `inner_conj_symm`
+  (`Mathlib/Analysis/InnerProductSpace/Symmetric.lean`, `.../Basic.lean`),
+  `Complex.conj_eq_iff_im` (`Mathlib/Data/Complex/Basic.lean`).
+
 ---
 
 _Further concepts append below as they are formalized. Keep this file in lockstep

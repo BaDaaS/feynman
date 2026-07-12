@@ -135,6 +135,24 @@ Theorem~\ref{thm:selfadjoint-real}), generators (traceless), and two-outcome
 \end{lemma}
 \begin{proof}\leanok Direct $2\times2$ matrix multiplication. \end{proof}
 
+\section{Observables and expectation values}
+
+\begin{theorem}[Observables have real expectation values]
+  \label{thm:expectation-real}
+  \lean{QuantumBook.FiniteDim.expectation_isReal}
+  \leanok
+  \uses{thm:selfadjoint-real}
+  If $A$ is a self-adjoint operator on a complex inner product space and $x$ is a
+  state, then the expectation value $\langle A\rangle_x = \langle x, A x\rangle$ is
+  real.
+\end{theorem}
+\begin{proof}\leanok
+  Conjugating the inner product swaps its arguments ($\overline{\langle x, Ax\rangle}
+  = \langle Ax, x\rangle$), and self-adjointness swaps them back
+  ($\langle Ax, x\rangle = \langle x, Ax\rangle$); so $\langle A\rangle_x$ equals
+  its own conjugate and is therefore real.
+\end{proof}
+
 \begin{lemma}[Pauli algebra]
   \label{lem:pauli-algebra}
   \lean{QuantumBook.FiniteDim.sigmaX_mul_sigmaY}
