@@ -47,7 +47,7 @@ infinite-dimensional ⇒ may be frontier.
 - [~] The Born rule: probabilities nonnegative and sum to one (proven)
 - [~] Unitary evolution: conserves total probability (proven); one-parameter groups / finite-dim Stone (planned)
 - [ ] Composite systems via tensor products
-- [ ] Entanglement; Schmidt decomposition
+- [~] Entanglement: Bell state is not a product (proven); Schmidt decomposition (planned)
 - [ ] Density matrices; mixed states; partial trace
 - [ ] No-cloning; basic quantum information primitives
 

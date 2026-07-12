@@ -130,6 +130,27 @@ we follow -> one-line "why this source".
 - **Mathlib provenance**: `LinearIsometryEquiv`, `LinearIsometryEquiv.norm_map`
   (`Mathlib/Analysis/NormedSpace/LinearIsometry.lean`).
 
+### Composite systems and entanglement
+
+- **Lean declarations**: `QuantumBook.FiniteDim.{IsProduct, IsEntangled,
+  bellState, bellState_isEntangled}`.
+- **Historical origin**: Einstein-Podolsky-Rosen (1935) and, decisively,
+  Schrodinger's 1935 papers, which coined "entanglement" (Verschraenkung) and gave
+  the cat. The Schmidt decomposition is due to Erhard Schmidt (1907).
+- **Modern treatments we follow**:
+  - Schrodinger, 1935 - the origin of the concept. `[Schrodinger1935]`
+  - Nielsen & Chuang, ch. 2 - tensor products, Bell states, Schmidt
+    decomposition. `[NielsenChuang2010]`
+  - Einstein-Podolsky-Rosen, 1935 - the argument that made entanglement
+    prominent. `[EPR1935]`
+- **Why these**: Schrodinger names and frames it; Nielsen-Chuang gives the
+  finite-dimensional machinery the proof uses; EPR is the historical setup for
+  Bell (foundations track).
+- **Mathlib provenance**: `Basis.tensorProduct`,
+  `Basis.tensorProduct_repr_tmul_apply`, `Basis.repr_self`
+  (`Mathlib/LinearAlgebra/TensorProduct/Basis.lean`). Note: `Basis` lives in the
+  `Module` namespace in this Mathlib (`open Module`).
+
 ---
 
 _Further concepts append below as they are formalized. Keep this file in lockstep

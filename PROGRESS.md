@@ -116,11 +116,23 @@ Verified: `QuantumBook.FiniteDim.bornProb_sum_unitary` - unitary evolution
 preserves the total Born probability. Axioms `[propext, Classical.choice,
 Quot.sound]`.
 
+### Concept: composite systems and entanglement - COMPLETE (four layers)
+
+| Layer                | Artifact                                              | Status |
+| -------------------- | ----------------------------------------------------- | ------ |
+| Formal (Lean)        | `QuantumBook/FiniteDim/Entanglement.lean`             | done (no `sorry`) |
+| Book (Verso + ASCII) | `book/Chapters/Ch05_Entanglement.lean`                | done (HTML renders) |
+| Video (Manim)        | `media/manim/ch05/entanglement.py` + `media/scripts/ch05.md` | done (renders) |
+| Provenance           | `references/sources.md` (Entanglement)                | done |
+| Blueprint node       | `thm:bell-entangled`                                  | done (checkdecls pass) |
+
+Verified: `QuantumBook.FiniteDim.{IsProduct, IsEntangled, bellState,
+bellState_isEntangled}` - the Bell state is not a product state (a tensor-basis
+coefficient argument). Axioms `[propext, Classical.choice, Quot.sound]`.
+
 ## Next smallest step
 
-Continue Part I: **composite systems and the tensor product** - the two-system
-state space `H_A ⊗ H_B` (Mathlib `TensorProduct`), a product state, and the notion
-of an entangled (non-product) state (e.g. that the Bell state is not a product),
-then the Schmidt decomposition. Finite-dimensional and provable, though the
-entanglement non-product proof needs the tensor-vanishing criterion. Add each
-concept's four layers before advancing.
+Continue Part I: the **Schmidt decomposition** and the **partial trace / reduced
+density operator** (the reduced state of a Bell pair is maximally mixed), then
+**no-cloning**. These use the tensor and SVD machinery. Add each concept's four
+layers before advancing.

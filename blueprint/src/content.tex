@@ -171,6 +171,24 @@ Theorem~\ref{thm:selfadjoint-real}), generators (traceless), and two-outcome
   an orthonormal basis, which is $1$ on a normalized state.
 \end{proof}
 
+\section{Composite systems and entanglement}
+
+\begin{theorem}[The Bell state is entangled]
+  \label{thm:bell-entangled}
+  \lean{QuantumBook.FiniteDim.bellState_isEntangled}
+  \leanok
+  The Bell state $b_0\otimes b_0 + b_1\otimes b_1$ on a two-level subsystem is not
+  a product state: there are no $a, c$ with $b_0\otimes b_0 + b_1\otimes b_1 =
+  a\otimes c$.
+\end{theorem}
+\begin{proof}\leanok
+  In the tensor-product basis, a product $a\otimes c$ has coefficient
+  $\alpha_i\gamma_j$ at $(i,j)$. Matching the Bell coefficients ($1$ on the
+  diagonal, $0$ off) gives $\alpha_0\gamma_0 = 1$, $\alpha_0\gamma_1 = 0$,
+  $\alpha_1\gamma_1 = 1$; the first forces $\alpha_0\ne 0$, so the second forces
+  $\gamma_1 = 0$, contradicting the third.
+\end{proof}
+
 \section{Unitary evolution}
 
 \begin{theorem}[Unitary evolution conserves total probability]

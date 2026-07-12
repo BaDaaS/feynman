@@ -30,7 +30,7 @@ name = "Book"
 srcDir = "book"
 # Enumerate the book modules so imports across the `Chapters.*` namespace
 # resolve when building the library and the executable. Add each new chapter.
-globs = ["Book", "Chapters.Ch00_Substrate", "Chapters.Ch01_Qubit", "Chapters.Ch02_Observable", "Chapters.Ch03_Born", "Chapters.Ch04_Dynamics"]
+globs = ["Book", "Chapters.Ch00_Substrate", "Chapters.Ch01_Qubit", "Chapters.Ch02_Observable", "Chapters.Ch03_Born", "Chapters.Ch04_Dynamics", "Chapters.Ch05_Entanglement"]
 
 # Book builder: generates the HTML/PDF book from the Verso sources.
 [[lean_exe]]

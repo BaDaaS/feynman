@@ -8,6 +8,7 @@ import Chapters.Ch01_Qubit
 import Chapters.Ch02_Observable
 import Chapters.Ch03_Born
 import Chapters.Ch04_Dynamics
+import Chapters.Ch05_Entanglement
 
 open Verso.Genre Manual
 
@@ -47,3 +48,5 @@ whole pipeline works end to end.
 {include 0 Chapters.Ch03_Born}
 
 {include 0 Chapters.Ch04_Dynamics}
+
+{include 0 Chapters.Ch05_Entanglement}
