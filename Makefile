@@ -112,6 +112,7 @@ videos: ## Render all Manim scenes to mp4 (into media/media)
 	$(MANIM) $(MANIM_QUALITY) manim/ch01/qubit.py PauliFlipScene
 	$(MANIM) $(MANIM_QUALITY) manim/ch02/observable.py ExpectationRealScene
 	$(MANIM) $(MANIM_QUALITY) manim/ch03/born.py BornDistributionScene
+	$(MANIM) $(MANIM_QUALITY) manim/ch04/dynamics.py UnitaryConservesNormScene
 
 # ---------------------------------------------------------------------------
 # Housekeeping

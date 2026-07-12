@@ -102,9 +102,25 @@ Verified: `QuantumBook.FiniteDim.{bornProb, bornProb_nonneg, bornProb_sum,
 bornProb_sum_eq_one}` - the Born probabilities are nonnegative and sum to one
 (Parseval). Axioms `[propext, Classical.choice, Quot.sound]`.
 
+### Concept: unitary evolution / probability conservation - COMPLETE (four layers)
+
+| Layer                | Artifact                                              | Status |
+| -------------------- | ----------------------------------------------------- | ------ |
+| Formal (Lean)        | `QuantumBook/FiniteDim/Dynamics.lean`                 | done (no `sorry`) |
+| Book (Verso + ASCII) | `book/Chapters/Ch04_Dynamics.lean`                    | done (HTML renders) |
+| Video (Manim)        | `media/manim/ch04/dynamics.py` + `media/scripts/ch04.md` | done (renders) |
+| Provenance           | `references/sources.md` (Unitary evolution)           | done |
+| Blueprint node       | `thm:probability-conservation`                        | done (checkdecls pass) |
+
+Verified: `QuantumBook.FiniteDim.bornProb_sum_unitary` - unitary evolution
+preserves the total Born probability. Axioms `[propext, Classical.choice,
+Quot.sound]`.
+
 ## Next smallest step
 
-Continue Part I: **composite systems and the tensor product** - define the
-two-system state space `H_A ⊗ H_B` (Mathlib `TensorProduct`), a product state, and
-the notion of an entangled (non-product) state; then the Schmidt decomposition.
-Finite-dimensional and provable. Add each concept's four layers before advancing.
+Continue Part I: **composite systems and the tensor product** - the two-system
+state space `H_A ⊗ H_B` (Mathlib `TensorProduct`), a product state, and the notion
+of an entangled (non-product) state (e.g. that the Bell state is not a product),
+then the Schmidt decomposition. Finite-dimensional and provable, though the
+entanglement non-product proof needs the tensor-vanishing criterion. Add each
+concept's four layers before advancing.

@@ -171,6 +171,22 @@ Theorem~\ref{thm:selfadjoint-real}), generators (traceless), and two-outcome
   an orthonormal basis, which is $1$ on a normalized state.
 \end{proof}
 
+\section{Unitary evolution}
+
+\begin{theorem}[Unitary evolution conserves total probability]
+  \label{thm:probability-conservation}
+  \lean{QuantumBook.FiniteDim.bornProb_sum_unitary}
+  \leanok
+  \uses{thm:born-rule}
+  If $U$ is a unitary evolution (a linear isometry equivalence of the state space)
+  then the total Born probability is invariant: $\sum_i p_i(Ux) = \sum_i p_i(x)$.
+  A normalized state stays normalized under evolution.
+\end{theorem}
+\begin{proof}\leanok
+  The total Born probability is the squared norm (Theorem \ref{thm:born-rule}), and
+  a unitary preserves the norm.
+\end{proof}
+
 \begin{lemma}[Pauli algebra]
   \label{lem:pauli-algebra}
   \lean{QuantumBook.FiniteDim.sigmaX_mul_sigmaY}

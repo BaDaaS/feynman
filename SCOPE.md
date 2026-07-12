@@ -45,7 +45,7 @@ infinite-dimensional ⇒ may be frontier.
 - [~] Observables as self-adjoint operators; expectation values real (proven);
   eigenvalues as outcomes
 - [~] The Born rule: probabilities nonnegative and sum to one (proven)
-- [ ] Unitary evolution; one-parameter groups (finite-dim Stone)
+- [~] Unitary evolution: conserves total probability (proven); one-parameter groups / finite-dim Stone (planned)
 - [ ] Composite systems via tensor products
 - [ ] Entanglement; Schmidt decomposition
 - [ ] Density matrices; mixed states; partial trace

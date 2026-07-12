@@ -114,6 +114,22 @@ we follow -> one-line "why this source".
 - **Mathlib provenance**: `OrthonormalBasis.sum_sq_norm_inner_right` (Parseval),
   `Mathlib/Analysis/InnerProductSpace/PiL2.lean`.
 
+### Unitary evolution and probability conservation
+
+- **Lean declaration**: `QuantumBook.FiniteDim.bornProb_sum_unitary`.
+- **Historical origin**: the unitarity of time evolution is implicit in
+  Schrodinger's equation (1926) and made precise by von Neumann (1932) and Stone's
+  theorem (1932) for the generator.
+- **Modern treatments we follow**:
+  - Hall, _Quantum Theory for Mathematicians_, ch. 10 - unitary one-parameter
+    groups and Stone's theorem. `[Hall2013QTM]`
+  - Takhtajan, _Quantum Mechanics for Mathematicians_ - the dynamics as a flow.
+    `[Takhtajan2008]`
+- **Why these**: Hall gives the finite- and infinite-dimensional statements and
+  the Stone-theorem bridge to the Part IV frontier; Takhtajan the flow picture.
+- **Mathlib provenance**: `LinearIsometryEquiv`, `LinearIsometryEquiv.norm_map`
+  (`Mathlib/Analysis/NormedSpace/LinearIsometry.lean`).
+
 ---
 
 _Further concepts append below as they are formalized. Keep this file in lockstep
