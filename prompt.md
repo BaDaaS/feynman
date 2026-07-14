@@ -369,3 +369,16 @@ Deliver that slice, then stop and report before continuing to Part I.
   track (Griffiths / Sakurai / Shankar / Zwiebach) for cross-reference?
 - **Coverage ambition.** How far into Tier 5+ to commit now — cap at NRQM + quantum
   information, or explicitly aim toward QFT over the long run?
+- **Other fields to add.** Beyond quantum mechanics, which further areas of physics to
+  bring into the same verified-and-illustrated treatment (as companion tracks or sibling
+  books), and in what order. Candidate fields:
+  - special relativity;
+  - general relativity;
+  - classical mechanics (Lagrangian and Hamiltonian);
+  - classical electromagnetism and classical field theory;
+  - thermodynamics and statistical mechanics;
+  - relativistic quantum mechanics (the Dirac equation), as the bridge to fields;
+  - quantum field theory, gauge theory, and the Standard Model;
+  - condensed matter and many-body physics;
+  - cosmology.
+  This is a list of physical theories to cover, not of mathematical prerequisites.
