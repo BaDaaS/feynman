@@ -14,8 +14,7 @@
 
 Build, incrementally over a long horizon, a **book on quantum mechanics in which the
 mathematics is machine-verified in Lean 4 (against Mathlib)**, the prose lives beside
-the code, structural abstractions are drawn in ASCII, and each chapter carries an
-animation + narration layer so the material can be turned into videos.
+the code, and structural abstractions are drawn in ASCII.
 
 The intended reader (and primary author) is a mathematician with a strong **algebra
 and geometry** background and a **formal-methods / programming-languages** sensibility,
@@ -45,18 +44,17 @@ Physical intuition is welcome but is never a substitute for a proof.
    in Mathlib**. Treat that boundary as a first-class pedagogical feature, not an
    embarrassment.
 
-3. **One source of truth, three projections.** Every concept is anchored to a named Lean
-   declaration and projected into three tightly-coupled layers (see §5). The prose, the
-   ASCII diagram, and the Manim animation must never contradict the Lean object they
-   depict.
+3. **One source of truth, its projections.** Every concept is anchored to a named Lean
+   declaration and projected into tightly-coupled layers (see §5). The prose and the
+   ASCII diagram must never contradict the Lean object they depict.
 
-4. **Reproducible from clean.** Pin the Lean toolchain, the exact Mathlib revision, the
-   Verso version, and the ManimCE version. A single documented command must rebuild the
-   whole artifact (book HTML/PDF + rendered videos) from a clean checkout.
+4. **Reproducible from clean.** Pin the Lean toolchain, the exact Mathlib revision, and
+   the Verso version. A single documented command must rebuild the whole artifact
+   (book HTML/PDF) from a clean checkout.
 
 5. **Small verified increments.** Never advance to a new concept while the current one
    fails to build. "Done" for a unit means: Lean compiles with no *unexpected* `sorry`,
-   the book chapter renders, and any ASCII/animation assets referenced actually exist.
+   the book chapter renders, and any ASCII assets referenced actually exist.
 
 6. **Prefer Mathlib; cite what you use.** Before proving anything from scratch, search
    Mathlib for it. When you use a Mathlib result, reference the exact declaration name in
@@ -92,22 +90,18 @@ quantum-book/
     Chapters/Ch00_Substrate.lean # prose + ASCII, importing QuantumBook decls by name
     ...
   blueprint/                     # leanblueprint: LaTeX + dependency graph of results
-  media/
-    manim/ch01/…py               # ManimCE scenes, one folder per chapter
-    scripts/ch01.md              # narration scripts (a "view" of the chapter prose)
-    ascii/                       # optional reusable ASCII fragments
   references/                    # THE SCHOLARSHIP LAYER (see §10)
     bibliography.bib             # BibTeX: every cited work, with stable IDs (DOI/arXiv)
     sources.md                   # per-concept provenance map: Lean decl -> sources
     reading-map.md               # curated, route-organized reading list (the seed §10)
   tools/                         # build + CI scripts
-  build/                         # GENERATED: html/pdf book, mp4 renders (git-ignored)
+  build/                         # GENERATED: html/pdf book (git-ignored)
   DECISIONS.md                   # ADR-style log of design decisions
   PROGRESS.md                    # human-readable status mirror of the blueprint graph
   SCOPE.md                       # the whole-territory coverage map + status (see §11)
 ```
 
-Key rule: **`QuantumBook/` is the truth; `book/` narrates it; `media/` animates it.**
+Key rule: **`QuantumBook/` is the truth; `book/` narrates it.**
 The book chapters import and reference real declarations from `QuantumBook/` — they do
 not restate mathematics in prose that has no formal referent.
 
@@ -123,9 +117,6 @@ not restate mathematics in prose that has no formal referent.
   which renders proof states into reStructuredText/Markdown. Prefer Verso.)
 - **leanblueprint** — the dependency graph tracking which results are proven vs.
   frontier. This *is* the project's map; keep it current.
-- **ManimCE** (the maintained Community Edition of 3blue1brown's library — **not** the
-  personal `3b1b/manim` repo) — the animations.
-- Narration scripts in Markdown under `media/scripts/`.
 
 Because these tools move, **verify current versions at setup and pin them**; read each
 tool's current README rather than relying on memory. Record the pinned versions in
@@ -143,16 +134,12 @@ For each concept, produce three coupled layers, in this order:
    the Lean declaration by name, plus an **ASCII abstraction diagram** (§6) when the
    concept is structural (a commuting square, a tensor factorization, an algebra
    inclusion, a functor).
-3. **Video layer** — a ManimCE scene in `media/manim/…` visualizing the concept, and a
-   narration entry in `media/scripts/…` whose text is consistent with the book prose
-   (the script is a re-voicing of the chapter, not a separate story).
-
-4. **Provenance** — record, in `references/sources.md`, the source(s) for the result: the
+3. **Provenance** — record, in `references/sources.md`, the source(s) for the result: the
    historical origin where relevant, plus at least one rigorous treatment we're following.
    Add the entries to `bibliography.bib`. This is lightweight per concept but compounds
    into the scholarship layer (§10).
 
-A concept is not "complete" until all four exist and agree, *or* it is explicitly logged
+A concept is not "complete" until all three exist and agree, *or* it is explicitly logged
 as book-only / frontier in `PROGRESS.md`.
 
 ---
@@ -163,13 +150,11 @@ ASCII diagrams are for **structural abstraction** — the shapes an algebraist/g
 thinks in — not decoration. Rules:
 
 - Use only portable ASCII (`-`, `|`, `+`, `>`, `v`, `^`, `/`, `\`) — no box-drawing
-  Unicode, so the diagrams survive plaintext, code comments, and video frames alike.
+  Unicode, so the diagrams survive plaintext and code comments alike.
 - Every diagram depicts a **named formal referent**; note it beneath the diagram
   (`-- depicts: QuantumBook.FiniteDim.born_rule`).
 - Consistent arrow vocabulary: `-->` map, `==>` isomorphism, `>->` inclusion/mono,
   `-->>` surjection, `~~>` "informal/physical, not proven".
-- A complex commuting diagram that appears in ASCII in the book should generally get an
-  **animated Manim counterpart** in the video layer.
 
 Example house style (a measurement as a commuting square):
 
@@ -186,18 +171,11 @@ Example house style (a measurement as a commuting square):
 
 ---
 
-## 7. Animation & video pipeline
+## 7. (reserved)
 
-- One Manim module per chapter; scene classes named after the concept
-  (`QubitBlochScene`, `EntanglementTensorScene`).
-- Each scene has a matching block in the chapter's narration script with rough timing
-  cues that reference the scene/section, so a voiceover can be recorded against it.
-- Provide a build target that (a) renders all scenes for a chapter to mp4 at a chosen
-  resolution, and optionally (b) concatenates them into a chapter reel.
-- Keep animations **faithful to the formal object**: if a scene shows a rotation on the
-  Bloch sphere, it should correspond to the actual unitary defined in `QuantumBook/`.
-- Do not let the video narrative diverge from the book; the book prose is the single
-  narrative source and the script is derived from it.
+The animation and video layer (ManimCE scenes, narration scripts, rendered reels)
+was removed from the project. This section number is retained so the cross-references
+to later sections (§8–§13) elsewhere in the repository stay valid.
 
 ---
 
@@ -234,12 +212,10 @@ For each work session, operate in this loop and keep it tight:
    frontier-flag it per §2. Run `lake build` — it must pass.
 3. **Narrate + diagram.** Add the book prose in the Verso chapter, the ASCII abstraction,
    and the reference to the Lean name. Build the book; it must render.
-4. **Animate.** Add the Manim scene and the narration entry. Render the scene to confirm
-   it runs.
-5. **Record.** Update `PROGRESS.md`, add provenance to `references/sources.md` and any new
+4. **Record.** Update `PROGRESS.md`, add provenance to `references/sources.md` and any new
    works to `bibliography.bib` (verify every link), tick the topic in `SCOPE.md`, and if a
    design choice was made, append an ADR entry to `DECISIONS.md`. Update the blueprint graph.
-6. **Stop cleanly.** Never end a session with a build broken or a `sorry` undocumented.
+5. **Stop cleanly.** Never end a session with a build broken or a `sorry` undocumented.
    Summarize what changed and what the next smallest step is.
 
 Additional standing rules:
@@ -257,7 +233,7 @@ Additional standing rules:
 This book should double as an annotated map into the literature, tuned to a math-first
 reader. Mechanics:
 
-- **Provenance per result** (from §5.4) and a **"Sources & further reading" block ending
+- **Provenance per result** (from §5.3) and a **"Sources & further reading" block ending
   every chapter**, curated and annotated (one line on *why* each source is worth the
   reader's time and which route it serves), not a raw dump.
 - **`references/reading-map.md`** holds the master list, organized by *route* rather than
@@ -309,8 +285,8 @@ reader. Mechanics:
 - *Courses & video* `[free]` — MIT OCW **8.04 / 8.05 / 8.06** (Zwiebach et al.),
   `ocw.mit.edu/courses/8-04-quantum-physics-i-spring-2013/` and the 8.05/8.06 sequel
   pages; Frederic Schuller's *Lectures on Quantum Theory* and *Geometric Anatomy of
-  Theoretical Physics* (YouTube) — excellent math-first; 3Blue1Brown (as an animation
-  *style* reference for the video layer). Stanford Encyclopedia of Philosophy for careful
+  Theoretical Physics* (YouTube) — excellent math-first; 3Blue1Brown for geometric
+  intuition. Stanford Encyclopedia of Philosophy for careful
   foundational entries (measurement, Bell's theorem, interpretations).
 
 ---
@@ -326,13 +302,13 @@ topic as a stub — a blueprint node and a one-line status. This makes "cover as
 possible" visible and navigable from day one; subsequent passes raise the resolution.
 
 **(b) Always shippable.** Work in *tiers*. At the end of each tier the whole artifact —
-book, proofs, videos — is in a coherent, green (for its scope) state that could be
+book and proofs — is in a coherent, green (for its scope) state that could be
 released as-is. No tier begins until the previous one is clean.
 
 **Tiers (ordered by dependency, not calendar):**
 
 - **Tier 0 — Vertical slice.** The end-to-end pipeline on one concept (see §12).
-- **Tier 1 — Verified finite-dimensional core.** Parts 0–I complete across all four
+- **Tier 1 — Verified finite-dimensional core.** Parts 0–I complete across all three
   layers, fully proven. This alone is a genuine, releasable "verified QM primer."
 - **Tier 2 — Algebraic & representation-theoretic layer.** Part II. Lean-QuantumInfo
   conventions reused; formalize as far as the continuous functional calculus reaches.
@@ -341,7 +317,7 @@ released as-is. No tier begins until the previous one is clean.
 - **Tier 4 — Frontier & categorical capstone.** Part IV. Unbounded operators and the
   spectral theorem as tracked `sorry`-nodes; categorical QM as the unifying finale.
 - **Tier 5+ — Expansion frontier (open-ended).** Grow `SCOPE.md` outward as time and
-  Mathlib allow, each sub-topic entering the same four-layer discipline:
+  Mathlib allow, each sub-topic entering the same three-layer discipline:
   - deeper **quantum information & computation** (channels, entropy, error correction,
     algorithms) — mostly finite-dim, so highly verifiable;
   - **foundations**: measurement problem, decoherence, Bell/CHSH and contextuality
@@ -367,12 +343,12 @@ visible in `PROGRESS.md`.
 
 Before scaling, build **one thin end-to-end slice** proving the whole pipeline works:
 
-- Repo skeleton per §3, with toolchain/Mathlib/Verso/ManimCE pinned and a working build
+- Repo skeleton per §3, with toolchain/Mathlib/Verso pinned and a working build
   command.
 - **Part 0, one concept** — e.g. the finite-dim spectral theorem for a Hermitian
   operator — carried through **all three layers**: proven in `QuantumBook/Foundations/`,
-  narrated in `book/Chapters/Ch00_Substrate.lean` with one ASCII diagram, and one Manim
-  scene + narration entry in `media/`.
+  narrated in `book/Chapters/Ch00_Substrate.lean` with one ASCII diagram, and its
+  provenance recorded in `references/`.
 - `PROGRESS.md`, `DECISIONS.md`, and the blueprint initialized.
 - A short `README` explaining the layout and the rebuild command.
 
@@ -382,16 +358,10 @@ Deliver that slice, then stop and report before continuing to Part I.
 
 ## 13. `TODO(author)` — decisions to confirm before/at kickoff
 
-- **Narration language & tone.** Language of the video narration and register
-  (lecture / conversational / terse). Default assumption unless told otherwise: English,
-  lecture register.
 - **Primary book output.** Interactive HTML (Verso's strength) as primary, PDF as
   secondary? Or PDF-first?
-- **Video granularity.** Short per-concept clips, or longer per-chapter reels, or both?
 - **Blueprint depth.** Full leanblueprint LaTeX + dependency graph from day one, or a
   lightweight `PROGRESS.md` first with the blueprint added at Part I?
-- **Voice/production.** Will you record voiceover yourself against the scripts, or should
-  scripts be written for possible TTS?
 - **Repo/CI host & license.** Where it lives and under what license.
 - **Citation style.** BibTeX + a chosen style (e.g. author–year), and whether to render a
   full bibliography page in the book.

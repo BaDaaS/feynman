@@ -36,8 +36,8 @@ spectral theorem is not yet in Mathlib.
 
 This is the first vertical slice: a single concept — the finite-dimensional
 spectral theorem — carried through the formal layer (the Lean library
-`QuantumBook`), this narrated book layer, and an animation layer, to prove the
-whole pipeline works end to end.
+`QuantumBook`) and this narrated book layer, to prove the whole pipeline works
+end to end.
 
 {include 0 Chapters.Ch00_Substrate}
 

@@ -1,5 +1,5 @@
 # Build orchestration for the verified, illustrated QM book.
-# Every artifact (proofs, book HTML/PDF, blueprint, videos) is produced through a
+# Every artifact (proofs, book HTML/PDF, blueprint) is produced through a
 # target here so local and CI runs are identical (see rules/makefile.md).
 
 SHELL := /usr/bin/env bash
@@ -8,8 +8,6 @@ export PATH := $(CURDIR)/tools/.venv/bin:/opt/homebrew/bin:$(PATH)
 
 BUILD := build
 BOOK_OUT := $(BUILD)/book
-MANIM := cd media && uv run manim
-MANIM_QUALITY ?= -qm
 BLUEPRINT_SRC := blueprint/src
 
 .PHONY: help
@@ -23,15 +21,11 @@ help: ## Ask for help!
 # ---------------------------------------------------------------------------
 
 .PHONY: setup
-setup: setup-lean setup-media setup-tools ## Set up all build environments
+setup: setup-lean setup-tools ## Set up all build environments
 
 .PHONY: setup-lean
 setup-lean: ## Fetch the Mathlib olean cache (after `lake update` on first clone)
 	lake exe cache get
-
-.PHONY: setup-media
-setup-media: ## Create the ManimCE venv (uv)
-	cd media && uv sync
 
 .PHONY: setup-tools
 setup-tools: ## Create the Python tools venv (leanblueprint, plastex)
@@ -43,7 +37,7 @@ setup-tools: ## Create the Python tools venv (leanblueprint, plastex)
 # ---------------------------------------------------------------------------
 
 .PHONY: all
-all: proofs book blueprint videos ## Rebuild every artifact from source
+all: proofs book blueprint ## Rebuild every artifact from source
 
 .PHONY: check
 check: proofs verify-no-sorry check-blueprint ## Run all verification checks
@@ -101,28 +95,6 @@ check-blueprint: proofs ## Verify blueprint \lean{} names exist (checkdecls-equi
 	tools/check-blueprint-decls.sh
 
 # ---------------------------------------------------------------------------
-# Video layer (ManimCE)
-# ---------------------------------------------------------------------------
-
-.PHONY: videos
-videos: ## Render all Manim scenes to mp4 (into media/media)
-	$(MANIM) $(MANIM_QUALITY) manim/ch00/spectral.py SpectralDecompositionScene
-	$(MANIM) $(MANIM_QUALITY) manim/ch00/spectral.py RealSpectrumScene
-	$(MANIM) $(MANIM_QUALITY) manim/ch01/qubit.py BlochPolesScene
-	$(MANIM) $(MANIM_QUALITY) manim/ch01/qubit.py PauliFlipScene
-	$(MANIM) $(MANIM_QUALITY) manim/ch02/observable.py ExpectationRealScene
-	$(MANIM) $(MANIM_QUALITY) manim/ch03/born.py BornDistributionScene
-	$(MANIM) $(MANIM_QUALITY) manim/ch04/dynamics.py UnitaryConservesNormScene
-	$(MANIM) $(MANIM_QUALITY) manim/ch05/entanglement.py EntanglementRankScene
-
-.PHONY: narrate
-narrate: ## Synthesize narration (macOS `say`) + mux onto scenes -> media/reels
-	cd media && uv run python narrate.py
-	mkdir -p media/reels
-	cp media/media/narrated/ch*_reel.mp4 media/reels/
-	@echo "Narrated reels in media/reels/ (published to /watch on Pages)."
-
-# ---------------------------------------------------------------------------
 # Housekeeping
 # ---------------------------------------------------------------------------
 
@@ -130,7 +102,6 @@ narrate: ## Synthesize narration (macOS `say`) + mux onto scenes -> media/reels
 clean: ## Remove generated artifacts (keeps the Lean/oleans cache)
 	rm -rf $(BUILD) blueprint/web blueprint/print
 	rm -f $(BLUEPRINT_SRC)/print.pdf
-	rm -rf media/media
 
 .PHONY: lint-shell
 lint-shell: ## Lint shell scripts with shellcheck

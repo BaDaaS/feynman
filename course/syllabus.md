@@ -78,7 +78,7 @@ infinite dimensions later. Fully verified.
   observable yields one of its eigenvalues, and leaves the system in the
   corresponding eigenstate."
 - **Resources**: [`Hall2013QTM`] ch. 7; [`Teschl2014`] ch. 3 (free); the book
-  chapter and its Manim scene.
+  chapter.
 - **Exercises**: (F) prove $A = UDU^{*}$ from Mathlib's `spectral_theorem` (done
   in the book; redo it your way). (A) diagonalize the Pauli matrices by hand.
 
@@ -180,7 +180,7 @@ releasable "verified QM primer."
   the Bloch ball, pure states as its 2-sphere; unitary evolution as $SU(2)$
   rotation, the $SU(2)\to SO(3)$ double cover.
 - **Lean anchor**: `<QuantumBook.FiniteDim.Qubit>`, `<...pauli>`,
-  `<...blochVector>` (planned); the Manim `QubitBlochScene`.
+  `<...blochVector>` (planned).
 - **Concept**: the first appearance of projective geometry (the Bloch sphere is
   $\mathbb{CP}^1$) and of the spin double cover - a preview of M2.5 and M3.1.
 - **Resources**: [`NielsenChuang2010`] ch. 1-2; [`Woit2017`] ch. 3-4 (free) on

@@ -17,7 +17,6 @@ that resolve the `TODO(author)` items in `prompt.md` §13 are recorded here.
   - Mathlib `require` rev = `v4.31.0`
   - Verso `require` rev = `v4.31.0`
   - leanblueprint = latest from PyPI (pure-Python plasTeX plugin; no Lean pin).
-  - ManimCE = `manim` 0.20.1 (resolved by `uv`; recorded in `media/uv.lock`).
 - **Rationale**: v4.31.0 is the newest *stable* Lean release for which both
   Mathlib and Verso ship a matching tag (verified by fetching each repo's
   `lean-toolchain` at that tag). v4.32.0 exists only as `-rc1`; we take stable
@@ -62,26 +61,21 @@ that resolve the `TODO(author)` items in `prompt.md` §13 are recorded here.
   dependencies for the blueprint target. `leanblueprint checkdecls` ties graph
   nodes to real Lean declaration names, enforcing "one source of truth" (§3).
 
-## ADR-0004 - Narration scripts: neutral (usable for self-record OR TTS)
+## ADR-0004 - Narration scripts: neutral (usable for self-record OR TTS) [WITHDRAWN]
 
 - **Date**: 2026-07-11
-- **Context**: `prompt.md` §13 (TODO author) - voice/production.
-- **Decision** (author): write narration **neutral** - natural lecture prose,
-  English, with timing cues, optimized for neither human voiceover nor a
-  specific TTS engine.
-- **Rationale**: Author preference; keeps options open. Register: lecture (the
-  §13 default).
-- **Consequences**: Scripts avoid engine-specific SSML but expand symbols into
-  spoken words (so a TTS pass is possible) while staying readable aloud.
+- **Status**: Withdrawn 2026-07-14. The video/animation layer (Manim scenes,
+  narration scripts, narrated reels) was removed from the repository; the book
+  is now formal + book + provenance. See the layout in `README.md`.
 
-## ADR-0005 - Licensing: dual (Apache-2.0 code, CC-BY-SA-4.0 book/media)
+## ADR-0005 - Licensing: dual (Apache-2.0 code, CC-BY-SA-4.0 book)
 
 - **Date**: 2026-07-11
 - **Context**: `prompt.md` §13 (TODO author) - repo/CI host & license.
 - **Decision** (author): public GitHub; **Apache-2.0** for the Lean code
-  (`QuantumBook/`, `tools/`, build scripts), **CC-BY-SA-4.0** for the book text,
-  narration, ASCII, and media (`book/`, `media/`, `blueprint/`, `references/`
-  prose). See `LICENSING.md`, `LICENSE-CODE`, `LICENSE-BOOK`.
+  (`QuantumBook/`, `tools/`, build scripts), **CC-BY-SA-4.0** for the book text
+  and ASCII (`book/`, `blueprint/`, `references/` prose). See `LICENSING.md`,
+  `LICENSE-CODE`, `LICENSE-BOOK`.
 - **Rationale**: Author preference. Permissive code license maximizes reuse of
   the formalization; ShareAlike keeps the pedagogical prose open. This split is
   standard for verified-math + exposition repos.
@@ -89,25 +83,11 @@ that resolve the `TODO(author)` items in `prompt.md` §13 are recorded here.
   exact GitHub remote is set by the author; until then the README states the
   intended host.
 
-## ADR-0006 - Manim labels use plain text (Pango), not LaTeX (MathTex)
+## ADR-0006 - Manim labels use plain text (Pango), not LaTeX (MathTex) [WITHDRAWN]
 
 - **Date**: 2026-07-11
-- **Context**: ManimCE renders typeset math via `MathTex`, which shells out to a
-  LaTeX -> dvi -> svg toolchain needing `standalone.cls`, `dvisvgm`, `preview`,
-  and `doublestroke`. The machine's TeX install (MacTeX BasicTeX 2026) lacks
-  these, and `tlmgr install` requires admin rights.
-- **Decision**: The Tier-0 Manim scenes use `Text` (Pango) with ASCII math
-  labels (`A e_2 = lambda_2 . e_2`), so they render from a clean environment with
-  no extra TeX packages. Upgrading to `MathTex` is a documented, optional step.
-- **Rationale**: Invariant 4 (reproducible from clean) outweighs prettier labels
-  for the vertical slice. A `sudo` system-wide TeX change should be the author's
-  call, not silently required by the build.
-- **Consequences**: To switch on typeset math later, run
-  `sudo tlmgr install standalone dvisvgm preview doublestroke` and replace `Text`
-  with `MathTex` in `media/manim/**`. The scene geometry (eigenvectors,
-  eigenvalues) is already computed from the real matrix, so only labels change.
-  The blueprint/LaTeX and the book's PDF path use the full LaTeX install
-  separately and are unaffected.
+- **Status**: Withdrawn 2026-07-14. The video/animation layer (ManimCE scenes)
+  was removed from the repository, so the Manim label decision no longer applies.
 
 ## ADR-0007 - Blueprint decl check via `lake env lean`, not the `checkdecls` exe
 
@@ -135,18 +115,17 @@ that resolve the `TODO(author)` items in `prompt.md` §13 are recorded here.
 - **Date**: 2026-07-11
 - **Context**: Invariant 4 requires a documented, reproducible rebuild from clean.
 - **Decision**: The build depends on: `elan`/`lake` (Lean, pinned by
-  `lean-toolchain`); the Mathlib olean cache (`lake exe cache get`); `uv` (Manim
-  venv, `media/`); `ffmpeg` (Manim rendering); a TeX install with `xelatex` (book
-  PDF + blueprint PDF); `graphviz`/`dot` (blueprint dep graph); and the
-  `tools/.venv` Python env (`leanblueprint`, `plastex`). All are invoked through
-  Makefile targets.
+  `lean-toolchain`); the Mathlib olean cache (`lake exe cache get`); `uv` (the
+  `tools/.venv` Python env); a TeX install with `xelatex` (book PDF + blueprint
+  PDF); `graphviz`/`dot` (blueprint dep graph); and that `tools/.venv` env
+  (`leanblueprint`, `plastex`). All are invoked through Makefile targets.
 - **Rationale**: One `make setup` establishes the environments; `make all` rebuilds
-  every artifact. Optional niceties (MathTex, SVG blueprint math) need extra TeX
-  packages via `sudo tlmgr` and are documented, not required.
+  every artifact. Optional niceties (SVG blueprint math) need extra TeX packages
+  via `sudo tlmgr` and are documented, not required.
 - **Consequences**: `make setup` must be run once on a clean checkout before
-  `make all`. Versions are pinned where the tool allows (`lean-toolchain`,
-  `media/uv.lock`); system tools (ffmpeg, graphviz, TeX) are provisioned via the
-  platform package manager and their versions recorded in ADR-0001.
+  `make all`. Versions are pinned where the tool allows (`lean-toolchain`);
+  system tools (graphviz, TeX) are provisioned via the platform package manager
+  and their versions recorded in ADR-0001.
 
 ## ADR-0009 - GitHub Actions: CI + Pages deploy; changelog/PR-hygiene deferred
 
@@ -214,27 +193,11 @@ that resolve the `TODO(author)` items in `prompt.md` §13 are recorded here.
   `FeynmanIII`, `Weinberg2015QM`, `Ballentine2014`). The coverage-ambition §13 TODO
   (how far into Tier 5+ / toward QFT) remains open.
 
-## ADR-0012 - Narrated videos: local macOS `say` TTS, committed reels, Pages /watch
+## ADR-0012 - Narrated videos: local macOS `say` TTS, committed reels, Pages /watch [WITHDRAWN]
 
 - **Date**: 2026-07-12
-- **Context**: The video layer had silent Manim clips plus neutral narration
-  scripts (`media/scripts/chNN.md`), but no actual narrated videos - the "turn
-  into videos" goal (prompt.md section 7) was only half-realized.
-- **Decision**: `media/narrate.py` extracts the spoken text from each chapter
-  script, synthesizes it with macOS `say` (built-in TTS, no dependency, no
-  network; voice Samantha), and muxes it onto the matching Manim scene with
-  ffmpeg (extending the clip to the narration length), then concatenates a
-  per-chapter reel. The six reels are committed under `media/reels/` with a
-  self-contained `index.html` "watch" page; the Pages workflow copies them to
-  `/watch` so they are live at `badaas.be/feynman/watch/`.
-- **Rationale**: TTS keeps the video layer fully reproducible from a clean macOS
-  checkout with no new dependency. Because CI runs on Linux (no `say`), the reels
-  are a LOCAL authoring artifact that must be committed; CI only copies them. The
-  reels are small (~3.8 MB total for six chapters), so committing them is
-  acceptable and makes them shareable/publishable without an external host.
-- **Consequences**: `make narrate` regenerates the reels (macOS only). Editing a
-  narration script means re-running `make narrate` and re-committing the affected
-  reel. A higher-quality voice (a cloud TTS, or a neural local voice) is a drop-in
-  future upgrade: swap the `say` call in `narrate.py`; everything downstream is
-  unchanged. `media/media/` (per-scene narrated clips and raw renders) stays
-  git-ignored; only `media/reels/` (the published reels + watch page) is tracked.
+- **Status**: Withdrawn 2026-07-14. The video/animation layer was removed from
+  the repository: the `media/` tree (Manim scenes, narration scripts,
+  `narrate.py`, committed reels), the `videos`/`narrate` Makefile targets, and
+  the Pages `/watch` publish step are all gone. The book ships as formal + book
+  + provenance.

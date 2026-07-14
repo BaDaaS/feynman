@@ -10,7 +10,7 @@ the machine-checked dependency graph.
 
 - `[ ]` not started
 - `[~]` in progress (some layer exists)
-- `[x]` complete across all four layers (formal + book + video + provenance), or
+- `[x]` complete across all three layers (formal + book + provenance), or
   explicitly logged as book-only / frontier
 - `(F)` frontier: legitimately `sorry`-stated per invariant 2 (not yet in Mathlib)
 - `(B)` book-level: prose/geometry-first, formalization targeted or deferred
@@ -41,7 +41,7 @@ infinite-dimensional ⇒ may be frontier.
 ### Part I - Finite-dimensional QM
 
 - [~] The qubit: state space `ℂ²`, Pauli operators (Hermitian, traceless,
-  involutive - all proven); Bloch sphere (book/video)
+  involutive - all proven); Bloch sphere (book)
 - [~] Observables as self-adjoint operators; expectation values real (proven);
   eigenvalues as outcomes
 - [~] The Born rule: probabilities nonnegative and sum to one (proven)

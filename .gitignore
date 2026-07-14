@@ -3,13 +3,10 @@
 **/.lake/
 /lake-packages/
 
-# Generated book + video artifacts
+# Generated book artifacts
 /build/
-media/media/
-media/manim/**/media/
 
-# Python (Manim venv managed by uv)
-media/.venv/
+# Python
 __pycache__/
 *.pyc
 
@@ -40,9 +37,6 @@ tools/.venv/
 
 # leanblueprint print output dir
 blueprint/print/
-
-# Manim render outputs (any location)
-media/videos/
 
 # leanblueprint / plasTeX generated artifacts
 blueprint/lean_decls

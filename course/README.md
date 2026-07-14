@@ -8,7 +8,7 @@ linear algebra of a single qubit to the operator-algebraic, geometric, and
 categorical formulations of quantum theory, with the mathematics
 machine-checked in Lean 4 wherever it can be.
 
-It is designed to be taught, self-studied, and turned into video lectures. Every
+It is designed to be taught and self-studied. Every
 module lists what it develops, the historical origin of the idea, the exact Lean
 declaration that anchors it (or a frontier flag if none exists yet), the
 conceptual questions it raises, curated resources, and exercises.
@@ -48,24 +48,23 @@ mechanics is fully proven; unbounded operators and the analysis of Schrodinger
 dynamics are the honest frontier. Watching that line recede as Mathlib grows is
 part of the pedagogy, not an embarrassment.
 
-## The four layers (how each concept is taught)
+## The three layers (how each concept is taught)
 
-For every concept the course couples four artifacts that cannot contradict each
+For every concept the course couples three artifacts that cannot contradict each
 other:
 
 ```
-  formal  -->  book  -->  video
-    |           |           |
-    +-----> provenance <----+
-  (Lean decl) (Verso prose  (Manim scene   (sources.md +
-   in Quantum   + ASCII       + narration     bibliography)
-    Book/)      diagram)       script)
+  formal  -------->  book
+    |                 |
+    +---> provenance <+
+  (Lean decl)  (Verso prose    (sources.md +
+   in Quantum   + ASCII         bibliography)
+    Book/)      diagram)
 ```
 
 - Formal: a Lean definition/theorem in `QuantumBook/`, proven or frontier-flagged.
 - Book: a Verso chapter that references the Lean declaration by name (so prose
   cannot drift from the proof) plus an ASCII abstraction diagram.
-- Video: a ManimCE scene faithful to the formal object, with a narration script.
 - Provenance: the historical origin and a rigorous modern treatment, recorded in
   `references/sources.md` and `references/bibliography.bib`.
 
@@ -156,14 +155,14 @@ Each module in `syllabus.md` ends with exercises in three registers:
 - Conceptual exercises: foundational questions with no single right answer,
   pointing at `foundations.md` and the Stanford Encyclopedia entries.
 
-A capstone project: take a concept not yet in the book, carry it through all four
-layers (Lean + Verso + Manim + provenance), and open a pull request. The
-`add-concept` skill in `.claude/skills/` scaffolds exactly this workflow.
+A capstone project: take a concept not yet in the book, carry it through all
+three layers (Lean + Verso + provenance), and open a pull request. The
+`add-concept` skill in `.claude/skills/` scaffolds this workflow.
 
 ## How to run the artifacts
 
 See the top-level [`README.md`](../README.md): `make all` rebuilds the proofs,
-the interactive HTML/PDF book, the blueprint dependency graph, and the videos;
+the interactive HTML/PDF book, and the blueprint dependency graph;
 `make check` runs the verification gates. The interactive book is the primary
 teaching surface; the blueprint graph shows, at a glance, what is proven and what
 is frontier.

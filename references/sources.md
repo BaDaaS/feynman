@@ -4,7 +4,7 @@
 
 Maps each formal concept (a named Lean declaration in `QuantumBook/`) to its
 sources: the historical origin where relevant, plus at least one rigorous modern
-treatment we follow. This is the lightweight per-concept record (prompt.md §5.4)
+treatment we follow. This is the lightweight per-concept record (prompt.md §5.3)
 that compounds into the scholarship layer (§10). Citation keys refer to
 `bibliography.bib`. Links are verified per invariant 7; unconfirmed links are
 marked `[unverified]`.
