@@ -22,7 +22,13 @@
 - Born, M., Heisenberg, W., Jordan, P. "Zur Quantenmechanik II" (the three-man
   paper). _Zeitschrift fur Physik_ 35 (1926): 557-615.
   [doi:10.1007/BF01379806](https://doi.org/10.1007/BF01379806) -- First systematic
-  matrix-mechanics formalism, including commutation relations in general form.
+  matrix-mechanics formalism, including commutation relations in general form. The
+  commutator generalizes to fields as the equal-time commutation relations (ETCR);
+  overviews:
+  [Canonical commutation relation](https://en.wikipedia.org/wiki/Canonical_commutation_relation)
+  and, for the equal-time field version,
+  [Canonical quantization](https://en.wikipedia.org/wiki/Canonical_quantization)
+  (Wikipedia).
 - Schrodinger, E. "Quantisierung als Eigenwertproblem" (first communication).
   _Annalen der Physik_ 384 (1926): 361-376.
   [doi:10.1002/andp.19263840404](https://doi.org/10.1002/andp.19263840404) --
@@ -76,6 +82,13 @@
   Mechanics." _Journal of Mathematics and Mechanics_ 17 (1967): 59-87.
   [doi:10.1512/iumj.1968.17.17004](https://doi.org/10.1512/iumj.1968.17.17004) --
   Contextuality via a finite combinatorial obstruction; pairs with Gleason.
+- Faster-than-light and the no-communication theorem: the quantum nonlocality of
+  Bell and CHSH (above) does not permit sending information faster than light,
+  because the entangled correlations are non-signaling (the marginal statistics
+  are unaffected by a distant measurement). Overviews:
+  [Faster-than-light](https://en.wikipedia.org/wiki/Faster-than-light) and
+  [Faster-than-light communication](https://en.wikipedia.org/wiki/Faster-than-light_communication)
+  (Wikipedia).
 - Aharonov, Y., Bohm, D. "Significance of Electromagnetic Potentials in the
   Quantum Theory." _Physical Review_ 115 (1959): 485-491.
   [doi:10.1103/PhysRev.115.485](https://doi.org/10.1103/PhysRev.115.485) -- The
