@@ -109,17 +109,19 @@ lint-shell: ## Lint shell scripts with shellcheck
 
 # A few hosts block or time out automated clients from CI (datacenter IPs)
 # while serving fine in a browser; they are excluded so CI catches real 404s
-# without flapping. The Springer OA PDF is additionally covered by its DOI
-# (which IS checked), and caltech consent-walls automated fetchers.
+# without flapping. caltech.edu consent-walls / times out automated fetchers
+# across its subdomains; the Springer OA PDF is behind a cookie wall but is
+# additionally covered by its DOI (which IS checked); quantum-journal.org times
+# out from CI IPs.
 LYCHEE_EXCLUDE := \
-	--exclude 'theory\.caltech\.edu' \
+	--exclude 'caltech\.edu' \
 	--exclude 'link\.springer\.com/content/pdf' \
 	--exclude 'quantum-journal\.org'
 
 .PHONY: check-links
 check-links: ## Check documentation/book links resolve (lychee; fails on dead links)
 	lychee --no-progress --max-retries 5 --retry-wait-time 3 \
-		--timeout 30 --max-concurrency 4 \
+		--timeout 45 --max-concurrency 4 \
 		--accept '200..=299,403,429' \
 		$(LYCHEE_EXCLUDE) \
 		README.md AGENTS.md DECISIONS.md PROGRESS.md SCOPE.md LICENSING.md \
