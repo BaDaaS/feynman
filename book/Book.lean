@@ -3,6 +3,7 @@ SPDX-License-Identifier: CC-BY-SA-4.0
 Root document of the book. Assembles the chapters via `{include}`.
 -/
 import VersoManual
+import Chapters.History
 import Chapters.Voices
 import Chapters.Ch00_Substrate
 import Chapters.Ch01_Qubit
@@ -39,6 +40,8 @@ This is the first vertical slice: a single concept — the finite-dimensional
 spectral theorem — carried through the formal layer (the Lean library
 `QuantumBook`) and this narrated book layer, to prove the whole pipeline works
 end to end.
+
+{include 0 Chapters.History}
 
 {include 0 Chapters.Voices}
 
