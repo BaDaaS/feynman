@@ -1,0 +1,20 @@
+# Dependabot configuration.
+# Only GitHub Actions is tracked here: the Lean toolchain / Mathlib / Verso are
+# pinned by hand (lean-toolchain, lakefile.toml) and are not a Dependabot
+# ecosystem, and there is no root pip/npm/cargo manifest to watch.
+version: 2
+
+updates:
+  - package-ecosystem: github-actions
+    directory: "/"
+    schedule:
+      interval: weekly
+    # One grouped PR for all action bumps keeps the noise down.
+    groups:
+      github-actions:
+        patterns:
+          - "*"
+    commit-message:
+      prefix: ci
+    labels:
+      - dependencies
