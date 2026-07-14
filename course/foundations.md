@@ -70,7 +70,10 @@ any philosophy is done.
 
 The following are interpretive positions. None is asserted by the course; each is
 described by *which postulate it modifies*, which is the mathematician's useful
-handle. Treated even-handedly, weighted by argument rather than popularity.
+handle. Treated even-handedly, weighted by argument rather than popularity. For a
+broad survey of the landscape, see
+[Interpretations of quantum mechanics](https://en.wikipedia.org/wiki/Interpretations_of_quantum_mechanics)
+(Wikipedia).
 
 - **Copenhagen / standard**: keeps both rules; treats the measurement cut as
   pragmatic and the state as a catalogue of predictions, not a physical object.

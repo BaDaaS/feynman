@@ -49,10 +49,16 @@
   Physical Reality Be Considered Complete?" _Physical Review_ 47 (1935): 777-780.
   [doi:10.1103/PhysRev.47.777](https://doi.org/10.1103/PhysRev.47.777) -- The EPR
   argument that frames every later discussion of nonlocality and completeness.
+  Overview:
+  [EPR paradox](https://en.wikipedia.org/wiki/Einstein%E2%80%93Podolsky%E2%80%93Rosen_paradox)
+  (Wikipedia).
 - Schrodinger, E. "Die gegenwartige Situation in der Quantenmechanik." _Die
   Naturwissenschaften_ 23 (1935): 807-812, 823-828, 844-849.
-  [doi:10.1007/BF01491891](https://doi.org/10.1007/BF01491891) -- Coins
-  "entanglement" (Verschraenkung) and the cat; the conceptual companion to EPR.
+  [doi:10.1007/BF01491891](https://doi.org/10.1007/BF01491891) -- Schrodinger's
+  reply to EPR: coins "entanglement" (Verschraenkung) and introduces the cat; the
+  conceptual companion to EPR. Overview:
+  [Schrodinger's cat](https://en.wikipedia.org/wiki/Schr%C3%B6dinger%27s_cat)
+  (Wikipedia).
 - Bell, J. S. "On the Einstein Podolsky Rosen paradox." _Physics Physique Fizika_
   1 (1964): 195-200. `[free]`
   [doi:10.1103/PhysicsPhysiqueFizika.1.195](https://doi.org/10.1103/PhysicsPhysiqueFizika.1.195)

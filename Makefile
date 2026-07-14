@@ -107,6 +107,14 @@ clean: ## Remove generated artifacts (keeps the Lean/oleans cache)
 lint-shell: ## Lint shell scripts with shellcheck
 	shellcheck tools/*.sh
 
+.PHONY: check-links
+check-links: ## Check documentation/book links resolve (lychee; fails on dead links)
+	lychee --no-progress --max-retries 5 \
+		--accept '200..=299,403,429' \
+		--exclude 'theory\.caltech\.edu' \
+		README.md DECISIONS.md PROGRESS.md SCOPE.md LICENSING.md \
+		course references 'book/*.lean' 'book/Chapters/*.lean'
+
 .PHONY: format-md
 format-md: ## Format markdown files
 	npx --yes prettier --write "**/*.md" --ignore-path .gitignore || true

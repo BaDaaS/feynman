@@ -56,3 +56,25 @@ jobs:
         run: sudo apt-get update && sudo apt-get install -y shellcheck
       - name: Run shellcheck
         run: make lint-shell
+
+  links:
+    name: Check links (no dead links)
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v7
+      # Install a pinned lychee binary from its GitHub release. `gh` is
+      # preinstalled on the runner; the glob pattern avoids hard-coding the
+      # exact asset filename. `make check-links` is the single source of truth
+      # for what gets checked (per the Makefile-targets rule).
+      - name: Install lychee
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          gh release download lychee-v0.24.2 --repo lycheeverse/lychee \
+            --pattern '*x86_64-unknown-linux-gnu.tar.gz' --output lychee.tar.gz
+          tar -xzf lychee.tar.gz --wildcards --strip-components=1 '*/lychee'
+          sudo install -m 0755 lychee /usr/local/bin/lychee
+          lychee --version
+      - name: Check links
+        run: make check-links
