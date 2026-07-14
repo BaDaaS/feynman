@@ -107,11 +107,21 @@ clean: ## Remove generated artifacts (keeps the Lean/oleans cache)
 lint-shell: ## Lint shell scripts with shellcheck
 	shellcheck tools/*.sh
 
+# A few hosts block or time out automated clients from CI (datacenter IPs)
+# while serving fine in a browser; they are excluded so CI catches real 404s
+# without flapping. The Springer OA PDF is additionally covered by its DOI
+# (which IS checked), and caltech consent-walls automated fetchers.
+LYCHEE_EXCLUDE := \
+	--exclude 'theory\.caltech\.edu' \
+	--exclude 'link\.springer\.com/content/pdf' \
+	--exclude 'quantum-journal\.org'
+
 .PHONY: check-links
 check-links: ## Check documentation/book links resolve (lychee; fails on dead links)
-	lychee --no-progress --max-retries 5 \
+	lychee --no-progress --max-retries 5 --retry-wait-time 3 \
+		--timeout 30 --max-concurrency 4 \
 		--accept '200..=299,403,429' \
-		--exclude 'theory\.caltech\.edu' \
+		$(LYCHEE_EXCLUDE) \
 		README.md DECISIONS.md PROGRESS.md SCOPE.md LICENSING.md \
 		course references 'book/*.lean' 'book/Chapters/*.lean'
 
