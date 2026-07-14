@@ -64,52 +64,15 @@ SCOPE.md            whole-territory coverage map (breadth ledger)
 reference real declarations (via Verso's `{docstring ...}`), so the prose cannot
 drift from the proofs.
 
-## Pinned versions (see `DECISIONS.md` ADR-0001)
+## Building and contributing
 
-| Component | Version | Pinned in |
-| --------- | ------- | --------- |
-| Lean      | `leanprover/lean4:v4.31.0` | `lean-toolchain` |
-| Mathlib   | `v4.31.0` | `lakefile.toml` |
-| Verso     | `v4.31.0` | `lakefile.toml` |
-| leanblueprint | latest (PyPI) | `tools/.venv` |
-
-## Rebuild from clean
-
-Prerequisites (system tools, provisioned via your platform package manager):
-`elan`/`lake` (Lean), `uv` (Python), a TeX install with `xelatex`, and
-`graphviz` (`dot`). On macOS: `brew install graphviz`, and a MacTeX/BasicTeX
-install for `xelatex`.
-
-```sh
-# 0. First clone only: resolve the Lean dependency graph.
-lake update
-
-# 1. One-time setup of all build environments (Mathlib cache, tools venv).
-make setup
-
-# 2. Build every artifact (proofs, book HTML+PDF, blueprint).
-make all
-
-# Or verify only (proofs + no-sorry + blueprint decl check):
-make check
-```
-
-`make help` lists all targets. Individual layers: `make proofs`, `make book`,
-`make blueprint`.
-
-### Outputs
-
-- Interactive HTML book: `build/book/html-multi/index.html`
-- Book LaTeX/PDF source: `build/book/tex/`
-- Blueprint PDF: `blueprint/print/print.pdf`; web dep-graph: `blueprint/web/index.html`
-
-## Verification
-
-- `make verify-no-sorry` runs `lake build --wfail` (fails on any `sorry`).
-- `make check-blueprint` (`tools/check-blueprint-decls.sh`) verifies every
-  blueprint `\lean{}` node names a real declaration in the built library.
-- Axiom hygiene is checked with `#print axioms` (the Tier-0 theorems depend only on
-  `propext`, `Classical.choice`, `Quot.sound`).
+The build, verification, and chapter-authoring details live in
+[`AGENTS.md`](AGENTS.md): the pinned toolchain, `make setup` / `make all` /
+`make check`, the verification gates (no-sorry, blueprint decl check, axiom
+hygiene, link check), and the Verso authoring conventions. In short, from a
+clean checkout: `lake update`, then `make setup`, then `make all`
+(`make help` lists every target). The full project constitution is
+[`prompt.md`](prompt.md).
 
 ## License
 

@@ -122,7 +122,7 @@ check-links: ## Check documentation/book links resolve (lychee; fails on dead li
 		--timeout 30 --max-concurrency 4 \
 		--accept '200..=299,403,429' \
 		$(LYCHEE_EXCLUDE) \
-		README.md DECISIONS.md PROGRESS.md SCOPE.md LICENSING.md \
+		README.md AGENTS.md DECISIONS.md PROGRESS.md SCOPE.md LICENSING.md \
 		course references 'book/*.lean' 'book/Chapters/*.lean'
 
 .PHONY: format-md
